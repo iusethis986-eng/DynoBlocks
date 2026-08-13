@@ -29,13 +29,9 @@ body {
     width: 90%;
     max-width: 420px;
     margin: 70px auto;
-
     background: white;
-
     padding: 30px;
-
     border-radius: 12px;
-
     box-shadow: 0 4px 20px rgba(0,0,0,.12);
 }
 
@@ -50,21 +46,15 @@ body {
 
 input {
     display: block;
-
     width: 100%;
     height: 50px;
-
     margin: 10px 0;
     padding: 12px;
-
     border: 1px solid #aaa;
     border-radius: 7px;
-
     background: white !important;
     color: black !important;
-
     -webkit-text-fill-color: black !important;
-
     font-size: 16px;
 }
 
@@ -76,46 +66,111 @@ input::placeholder {
 .auth-button {
     width: 100%;
     height: 48px;
-
     margin-top: 10px;
-
     border: none;
     border-radius: 7px;
-
     background: #222;
     color: white;
-
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .switch-text {
     text-align: center;
-
     color: #777;
-
     margin-top: 20px;
 }
 
 .switch-button {
     border: none;
     background: transparent;
-
     color: #1877f2;
-
     text-decoration: underline;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 
 .message {
     text-align: center;
-
     min-height: 20px;
-
     margin-top: 12px;
+}
+
+
+/* =========================
+   BAN SCREEN
+========================= */
+
+.ban-screen {
+    min-height: 100vh;
+
+    background: #f5f5f5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+}
+
+.ban-box {
+    width: 100%;
+    max-width: 650px;
+
+    background: white;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 40px;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,.10);
+}
+
+.ban-title {
+    font-size: 30px;
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.ban-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.ban-reason {
+    background: #f5f5f5;
+
+    border-radius: 7px;
+
+    padding: 15px;
+
+    margin: 20px 0;
+}
+
+.ban-reason-title {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.ban-appeal {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #ddd;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+.ban-permanent {
+    color: #d32f2f;
+    font-weight: bold;
 }
 
 
@@ -158,9 +213,7 @@ input::placeholder {
 
 .logo {
     font-size: 21px;
-
     font-weight: bold;
-
     white-space: nowrap;
 }
 
@@ -243,7 +296,6 @@ input::placeholder {
 
 .side-button.active {
     background: #e8e8e8;
-
     font-weight: bold;
 }
 
@@ -458,6 +510,18 @@ input::placeholder {
     border-radius: 10px;
 }
 
+.admin-search {
+    width: 100%;
+
+    margin: 15px 0 20px;
+
+    background: #f1f1f1 !important;
+
+    border: 1px solid #ddd;
+
+    height: 45px;
+}
+
 .user {
     background: #f1f1f1;
 
@@ -482,10 +546,76 @@ input::placeholder {
     color: white;
 
     margin-top: 8px;
+
+    cursor: pointer;
 }
 
 .ban-button {
     background: #e53935;
+}
+
+.unban-button {
+    background: #333;
+}
+
+.ban-controls {
+    margin-top: 12px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #ddd;
+}
+
+.ban-controls label {
+    display: block;
+
+    margin-top: 10px;
+
+    margin-bottom: 5px;
+}
+
+.ban-controls input[type="number"] {
+    width: 45%;
+
+    display: inline-block;
+
+    margin: 0;
+
+    height: 42px;
+}
+
+.ban-controls select {
+    width: 50%;
+
+    height: 42px;
+
+    padding: 8px;
+
+    border: 1px solid #aaa;
+
+    border-radius: 7px;
+
+    background: white;
+
+    font-size: 15px;
+}
+
+.ban-controls textarea {
+    width: 100%;
+
+    min-height: 80px;
+
+    padding: 10px;
+
+    border: 1px solid #aaa;
+
+    border-radius: 7px;
+
+    resize: vertical;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
 }
 
 
@@ -506,12 +636,15 @@ input::placeholder {
 
     .sidebar {
         width: 70px;
+
         padding: 15px 8px;
     }
 
     .side-button {
         font-size: 0;
+
         text-align: center;
+
         padding: 0;
     }
 
@@ -550,6 +683,10 @@ input::placeholder {
             repeat(2, 1fr);
 
         gap: 10px;
+    }
+
+    .ban-box {
+        padding: 25px;
     }
 
 }
@@ -592,7 +729,6 @@ input::placeholder {
     id="authScreen"
     class="auth-container"
 >
-
 
     <div id="loginForm">
 
@@ -641,7 +777,6 @@ input::placeholder {
         </p>
 
     </div>
-
 
 
     <div
@@ -698,6 +833,59 @@ input::placeholder {
 </div>
 
 
+<!-- ================================================= -->
+<!-- BAN SCREEN -->
+<!-- ================================================= -->
+
+<div
+    id="banScreen"
+    class="ban-screen hidden"
+>
+
+    <div class="ban-box">
+
+        <div class="ban-title">
+            Account Banned
+        </div>
+
+        <div class="ban-text">
+
+            Your account has been banned.
+
+        </div>
+
+
+        <div class="ban-reason">
+
+            <div class="ban-reason-title">
+                Reason
+            </div>
+
+            <div id="banReasonText">
+                No reason provided.
+            </div>
+
+        </div>
+
+
+        <div
+            id="banDurationText"
+            class="ban-text"
+        ></div>
+
+
+        <div class="ban-appeal">
+
+            If you believe this moderation action
+            was made incorrectly, you may contact
+            the game's support team.
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <!-- ================================================= -->
 <!-- APP -->
@@ -740,7 +928,6 @@ input::placeholder {
         </div>
 
     </header>
-
 
 
     <!-- SIDEBAR -->
@@ -793,16 +980,13 @@ input::placeholder {
     </aside>
 
 
-
-    <!-- HOME CONTENT -->
+    <!-- HOME -->
 
     <main
         id="homeContent"
         class="content"
     >
 
-
-        <!-- PROFILE -->
 
         <div class="profile">
 
@@ -825,7 +1009,6 @@ input::placeholder {
         </div>
 
 
-
         <!-- CONTINUE -->
 
         <section class="section">
@@ -846,10 +1029,7 @@ input::placeholder {
             </div>
 
 
-            <div
-                class="game-grid"
-                id="continueGrid"
-            >
+            <div class="game-grid">
 
                 <div
                     class="game-card"
@@ -905,7 +1085,6 @@ input::placeholder {
         </section>
 
 
-
         <!-- RECOMMENDED -->
 
         <section class="section">
@@ -926,10 +1105,7 @@ input::placeholder {
             </div>
 
 
-            <div
-                class="game-grid"
-                id="recommendedGrid"
-            >
+            <div class="game-grid">
 
                 <div
                     class="game-card"
@@ -1037,8 +1213,9 @@ input::placeholder {
     </main>
 
 
-
+    <!-- ================================================= -->
     <!-- ADMIN PAGE -->
+    <!-- ================================================= -->
 
     <main
         id="adminContent"
@@ -1053,6 +1230,22 @@ input::placeholder {
                 Manage users and moderation.
             </p>
 
+
+            <!-- PLAYER SEARCH -->
+
+            <input
+                id="adminPlayerSearch"
+                class="admin-search"
+                type="text"
+                placeholder="Search for a player..."
+                autocomplete="off"
+                autocapitalize="none"
+                autocorrect="off"
+                spellcheck="false"
+                oninput="renderAdmin()"
+            >
+
+
             <div id="adminUsers"></div>
 
         </div>
@@ -1060,7 +1253,6 @@ input::placeholder {
     </main>
 
 </div>
-
 
 
 <script>
@@ -1076,7 +1268,9 @@ let users =
     ) || [];
 
 
-/* Owner */
+/* =================================================
+   OWNER
+================================================= */
 
 let owner =
     users.find(
@@ -1091,18 +1285,31 @@ if (!owner) {
     users.push({
 
         username: "Boblox",
+
         password: "owner",
 
         owner: true,
+
         banned: false,
-        verified: true
+
+        verified: true,
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null
 
     });
 
 }
 
 
-/* Admin */
+/* =================================================
+   ADMIN
+================================================= */
 
 let admin =
     users.find(
@@ -1117,11 +1324,22 @@ if (!admin) {
     users.push({
 
         username: "admin",
+
         password: "admin123",
 
         owner: false,
+
         banned: false,
-        verified: false
+
+        verified: false,
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null
 
     });
 
@@ -1146,6 +1364,197 @@ function saveUsers() {
 
 
 /* =================================================
+   CALCULATE BAN EXPIRY
+================================================= */
+
+function calculateBanExpiry(amount, unit) {
+
+    const now = new Date();
+
+    amount = Number(amount);
+
+
+    if (unit === "seconds") {
+
+        return new Date(
+            now.getTime() +
+            amount * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "minutes") {
+
+        return new Date(
+            now.getTime() +
+            amount * 60 * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "hours") {
+
+        return new Date(
+            now.getTime() +
+            amount * 60 * 60 * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "days") {
+
+        return new Date(
+            now.getTime() +
+            amount * 24 * 60 * 60 * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "weeks") {
+
+        return new Date(
+            now.getTime() +
+            amount * 7 * 24 * 60 * 60 * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "months") {
+
+        const expiry =
+            new Date(now);
+
+        expiry.setMonth(
+            expiry.getMonth() + amount
+        );
+
+        return expiry.getTime();
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =================================================
+   CHECK BAN
+================================================= */
+
+function isUserBanned(user) {
+
+    if (!user.banned) {
+
+        return false;
+
+    }
+
+
+    if (user.banExpires === null) {
+
+        return true;
+
+    }
+
+
+    if (Date.now() >= user.banExpires) {
+
+        user.banned = false;
+
+        user.banReason = "";
+
+        user.banDuration = null;
+
+        user.banUnit = null;
+
+        user.banExpires = null;
+
+        saveUsers();
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =================================================
+   BAN SCREEN
+================================================= */
+
+function showBanScreen(user) {
+
+    document
+        .getElementById("authScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("app")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("banScreen")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("banReasonText")
+        .textContent =
+            user.banReason ||
+            "No reason provided.";
+
+
+    const duration =
+        document
+            .getElementById("banDurationText");
+
+
+    if (
+        user.banUnit === "permanent"
+        ||
+        user.banExpires === null
+    ) {
+
+        duration.innerHTML =
+            '<span class="ban-permanent">This ban is permanent.</span>';
+
+        return;
+
+    }
+
+
+    let unit =
+        user.banUnit;
+
+
+    if (user.banDuration !== 1) {
+
+        unit += "s";
+
+    }
+
+
+    duration.textContent =
+        "Banned for " +
+        user.banDuration +
+        " " +
+        unit;
+
+}
+
+
+/* =================================================
    LOGIN
 ================================================= */
 
@@ -1157,10 +1566,12 @@ function login() {
             .value
             .trim();
 
+
     const password =
         document
             .getElementById("loginPassword")
             .value;
+
 
     const message =
         document
@@ -1195,10 +1606,9 @@ function login() {
     }
 
 
-    if (user.banned) {
+    if (isUserBanned(user)) {
 
-        message.textContent =
-            "🚫 This account is banned.";
+        showBanScreen(user);
 
         return;
 
@@ -1228,10 +1638,12 @@ function register() {
             .value
             .trim();
 
+
     const password =
         document
             .getElementById("registerPassword")
             .value;
+
 
     const message =
         document
@@ -1267,11 +1679,22 @@ function register() {
     users.push({
 
         username: username,
+
         password: password,
 
         owner: false,
+
         banned: false,
-        verified: false
+
+        verified: false,
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null
 
     });
 
@@ -1301,6 +1724,12 @@ function showApp() {
         .getElementById("authScreen")
         .classList.add("hidden");
 
+
+    document
+        .getElementById("banScreen")
+        .classList.add("hidden");
+
+
     document
         .getElementById("app")
         .classList.remove("hidden");
@@ -1321,6 +1750,7 @@ function showHome() {
         .getElementById("homeContent")
         .classList.remove("hidden");
 
+
     document
         .getElementById("adminContent")
         .classList.add("hidden");
@@ -1335,7 +1765,9 @@ function showHome() {
     document
         .getElementById("welcomeName")
         .textContent =
-            "Welcome, " + username + "!";
+            "Welcome, " +
+            username +
+            "!";
 
 
     const user =
@@ -1368,7 +1800,7 @@ function showHome() {
 
 
 /* =================================================
-   SEARCH
+   SEARCH GAMES
 ================================================= */
 
 function searchGames() {
@@ -1457,6 +1889,7 @@ function openAdmin() {
         .getElementById("homeContent")
         .classList.add("hidden");
 
+
     document
         .getElementById("adminContent")
         .classList.remove("hidden");
@@ -1468,15 +1901,31 @@ function openAdmin() {
 
 
 /* =================================================
-   ADMIN USER LIST
+   ADMIN USER LIST + SEARCH
 ================================================= */
 
 function renderAdmin() {
 
     const list =
-        document.getElementById(
-            "adminUsers"
-        );
+        document
+            .getElementById(
+                "adminUsers"
+            );
+
+
+    const searchBox =
+        document
+            .getElementById(
+                "adminPlayerSearch"
+            );
+
+
+    const search =
+        searchBox
+            ? searchBox.value
+                .trim()
+                .toLowerCase()
+            : "";
 
 
     list.innerHTML = "";
@@ -1485,7 +1934,40 @@ function renderAdmin() {
     users.forEach(
         (user, index) => {
 
-            if (user.owner) return;
+            /* Never show owner */
+
+            if (user.owner) {
+
+                return;
+
+            }
+
+
+            /*
+             * Partial username search.
+             *
+             * This means:
+             *
+             * bob
+             *
+             * can find:
+             *
+             * Boblox
+             * Bobby
+             * Bob123
+             *
+             */
+
+            if (
+                search &&
+                !user.username
+                    .toLowerCase()
+                    .includes(search)
+            ) {
+
+                return;
+
+            }
 
 
             const div =
@@ -1498,6 +1980,47 @@ function renderAdmin() {
                 "user";
 
 
+            let status;
+
+
+            if (
+                isUserBanned(user)
+            ) {
+
+                if (
+                    user.banExpires === null
+                ) {
+
+                    status =
+                        "🚫 Permanently Banned";
+
+                }
+
+                else {
+
+                    status =
+                        "🚫 Banned for " +
+                        user.banDuration +
+                        " " +
+                        user.banUnit +
+                        (
+                            user.banDuration === 1
+                            ? ""
+                            : "s"
+                        );
+
+                }
+
+            }
+
+            else {
+
+                status =
+                    "✅ Active";
+
+            }
+
+
             div.innerHTML = `
 
                 <strong>
@@ -1506,64 +2029,372 @@ function renderAdmin() {
 
                 <br>
 
-                ${
-                    user.banned
-                    ? "🚫 Banned"
-                    : "✅ Active"
-                }
+                ${status}
 
             `;
 
 
-            const button =
-                document.createElement(
-                    "button"
-                );
+            /*
+             * =========================
+             * UNBAN
+             * =========================
+             */
+
+            if (
+                isUserBanned(user)
+            ) {
+
+                const unbanButton =
+                    document.createElement(
+                        "button"
+                    );
 
 
-            button.className =
-                "admin-button";
+                unbanButton.className =
+                    "admin-button unban-button";
 
 
-            if (user.banned) {
-
-                button.textContent =
+                unbanButton.textContent =
                     "Unban User";
 
+
+                unbanButton.onclick =
+                    function() {
+
+                        users[index].banned =
+                            false;
+
+                        users[index].banReason =
+                            "";
+
+                        users[index].banDuration =
+                            null;
+
+                        users[index].banUnit =
+                            null;
+
+                        users[index].banExpires =
+                            null;
+
+
+                        saveUsers();
+
+                        renderAdmin();
+
+                    };
+
+
+                div.appendChild(
+                    unbanButton
+                );
+
             }
+
+
+            /*
+             * =========================
+             * BAN CONTROLS
+             * =========================
+             */
 
             else {
 
-                button.textContent =
-                    "Ban User";
+                const controls =
+                    document.createElement(
+                        "div"
+                    );
 
-                button.classList.add(
-                    "ban-button"
+
+                controls.className =
+                    "ban-controls";
+
+
+                controls.innerHTML = `
+
+                    <label>
+                        <strong>
+                            Ban duration
+                        </strong>
+                    </label>
+
+                    <input
+                        class="ban-number"
+                        type="number"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="Length"
+                    >
+
+                    <select
+                        class="ban-unit"
+                    >
+
+                        <option value="seconds">
+                            Seconds
+                        </option>
+
+                        <option value="minutes">
+                            Minutes
+                        </option>
+
+                        <option value="hours">
+                            Hours
+                        </option>
+
+                        <option value="days">
+                            Days
+                        </option>
+
+                        <option value="weeks">
+                            Weeks
+                        </option>
+
+                        <option value="months">
+                            Months
+                        </option>
+
+                        <option value="permanent">
+                            Permanent
+                        </option>
+
+                    </select>
+
+
+                    <label>
+                        <strong>
+                            Ban reason
+                        </strong>
+                    </label>
+
+                    <textarea
+                        class="ban-reason-input"
+                        placeholder="Enter the reason for this ban..."
+                    ></textarea>
+
+
+                    <button
+                        class="admin-button ban-button"
+                    >
+                        Ban User
+                    </button>
+
+                `;
+
+
+                const numberInput =
+                    controls.querySelector(
+                        ".ban-number"
+                    );
+
+
+                const unitSelect =
+                    controls.querySelector(
+                        ".ban-unit"
+                    );
+
+
+                const reasonInput =
+                    controls.querySelector(
+                        ".ban-reason-input"
+                    );
+
+
+                const banButton =
+                    controls.querySelector(
+                        ".ban-button"
+                    );
+
+
+                /*
+                 * Permanent =
+                 * disable number box
+                 */
+
+                unitSelect.onchange =
+                    function() {
+
+                        if (
+                            unitSelect.value
+                            === "permanent"
+                        ) {
+
+                            numberInput.value =
+                                "";
+
+                            numberInput.disabled =
+                                true;
+
+                        }
+
+                        else {
+
+                            numberInput.disabled =
+                                false;
+
+                        }
+
+                    };
+
+
+                /*
+                 * BAN
+                 */
+
+                banButton.onclick =
+                    function() {
+
+                        const unit =
+                            unitSelect.value;
+
+
+                        const reason =
+                            reasonInput.value
+                                .trim();
+
+
+                        if (!reason) {
+
+                            alert(
+                                "Please enter a ban reason."
+                            );
+
+                            return;
+
+                        }
+
+
+                        if (
+                            unit !== "permanent"
+                            &&
+                            (
+                                !numberInput.value
+                                ||
+                                Number(
+                                    numberInput.value
+                                ) < 1
+                                ||
+                                !Number.isInteger(
+                                    Number(
+                                        numberInput.value
+                                    )
+                                )
+                            )
+                        ) {
+
+                            alert(
+                                "Enter a whole number for the ban length."
+                            );
+
+                            return;
+
+                        }
+
+
+                        users[index].banned =
+                            true;
+
+
+                        users[index].banReason =
+                            reason;
+
+
+                        users[index].banUnit =
+                            unit;
+
+
+                        if (
+                            unit === "permanent"
+                        ) {
+
+                            users[index].banDuration =
+                                null;
+
+                            users[index].banExpires =
+                                null;
+
+                        }
+
+                        else {
+
+                            const amount =
+                                Number(
+                                    numberInput.value
+                                );
+
+
+                            users[index].banDuration =
+                                amount;
+
+
+                            users[index].banExpires =
+                                calculateBanExpiry(
+                                    amount,
+                                    unit
+                                );
+
+                        }
+
+
+                        saveUsers();
+
+                        renderAdmin();
+
+                    };
+
+
+                div.appendChild(
+                    controls
                 );
 
             }
 
 
-            button.onclick =
-                function() {
-
-                    users[index].banned =
-                        !users[index].banned;
-
-                    saveUsers();
-
-                    renderAdmin();
-
-                };
-
-
-            div.appendChild(button);
-
-
-            list.appendChild(div);
+            list.appendChild(
+                div
+            );
 
         }
     );
+
+
+    /*
+     * =========================
+     * NO RESULTS
+     * =========================
+     */
+
+    if (
+        list.children.length === 0
+        &&
+        search
+    ) {
+
+        const noResults =
+            document.createElement(
+                "div"
+            );
+
+
+        noResults.className =
+            "user";
+
+
+        noResults.innerHTML = `
+
+            No players found matching
+            "<strong>
+                ${escapeHTML(search)}
+            </strong>".
+
+        `;
+
+
+        list.appendChild(
+            noResults
+        );
+
+    }
 
 }
 
@@ -1593,6 +2424,7 @@ function showRegister() {
         .getElementById("loginForm")
         .classList.add("hidden");
 
+
     document
         .getElementById("registerForm")
         .classList.remove("hidden");
@@ -1605,6 +2437,7 @@ function showLogin() {
     document
         .getElementById("registerForm")
         .classList.add("hidden");
+
 
     document
         .getElementById("loginForm")
@@ -1624,7 +2457,10 @@ function escapeHTML(text) {
             "div"
         );
 
-    div.textContent = text;
+
+    div.textContent =
+        text;
+
 
     return div.innerHTML;
 
@@ -1652,8 +2488,14 @@ if (savedUser) {
 
     if (
         user &&
-        !user.banned
+        isUserBanned(user)
     ) {
+
+        showBanScreen(user);
+
+    }
+
+    else if (user) {
 
         showApp();
 
