@@ -104,26 +104,40 @@ input::placeholder {
 
 .ban-screen {
     min-height: 100vh;
+
     background: #f5f5f5;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 25px;
 }
 
 .ban-box {
     width: 100%;
     max-width: 650px;
+
+    min-height: 520px;
+
     background: white;
+
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 40px;
+
+    padding: 50px 45px;
+
     box-shadow: 0 4px 20px rgba(0,0,0,.10);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .ban-title {
     font-size: 30px;
     font-weight: bold;
+
     margin-bottom: 20px;
 }
 
@@ -135,8 +149,11 @@ input::placeholder {
 
 .ban-reason {
     background: #f5f5f5;
+
     border-radius: 7px;
+
     padding: 15px;
+
     margin: 20px 0;
 }
 
@@ -147,9 +164,13 @@ input::placeholder {
 
 .ban-appeal {
     margin-top: 30px;
+
     padding-top: 20px;
+
     border-top: 1px solid #ddd;
+
     color: #666;
+
     font-size: 14px;
 }
 
@@ -174,16 +195,25 @@ input::placeholder {
 
 .topbar {
     height: 60px;
+
     background: white;
+
     border-bottom: 1px solid #ddd;
+
     display: flex;
+
     align-items: center;
+
     gap: 20px;
+
     padding: 0 20px;
+
     position: fixed;
+
     top: 0;
     left: 0;
     right: 0;
+
     z-index: 20;
 }
 
@@ -195,17 +225,25 @@ input::placeholder {
 
 .search {
     width: 300px;
+
     height: 38px;
+
     margin: 0;
+
     background: #f1f1f1 !important;
+
     border: none;
+
     font-size: 14px;
 }
 
 .top-right {
     margin-left: auto;
+
     display: flex;
+
     align-items: center;
+
     gap: 18px;
 }
 
@@ -220,26 +258,41 @@ input::placeholder {
 
 .sidebar {
     position: fixed;
+
     top: 60px;
     left: 0;
     bottom: 0;
+
     width: 220px;
+
     background: white;
+
     border-right: 1px solid #ddd;
+
     padding: 20px 12px;
 }
 
 .side-button {
     width: 100%;
+
     height: 45px;
+
     margin: 3px 0;
+
     border: none;
+
     border-radius: 7px;
+
     background: transparent;
+
     color: #333;
+
     text-align: left;
+
     padding: 0 15px;
+
     font-size: 15px;
+
     cursor: pointer;
 }
 
@@ -259,7 +312,9 @@ input::placeholder {
 
 .content {
     margin-left: 220px;
+
     padding: 90px 35px 40px;
+
     max-width: 1400px;
 }
 
@@ -270,29 +325,40 @@ input::placeholder {
 
 .profile {
     display: flex;
+
     align-items: center;
+
     gap: 18px;
+
     margin-bottom: 35px;
 }
 
 .avatar {
     width: 72px;
     height: 72px;
+
     border-radius: 50%;
+
     background: #ddd;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-size: 32px;
 }
 
 .profile h1 {
     margin: 0;
+
     font-size: 26px;
 }
 
 .profile p {
     margin: 6px 0;
+
     color: #777;
 }
 
@@ -307,20 +373,27 @@ input::placeholder {
 
 .section-header {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     margin-bottom: 15px;
 }
 
 .section-header h2 {
     margin: 0;
+
     font-size: 21px;
 }
 
 .see-all {
     border: none;
+
     background: transparent;
+
     color: #555;
+
     cursor: pointer;
 }
 
@@ -331,17 +404,24 @@ input::placeholder {
 
 .game-grid {
     display: grid;
+
     grid-template-columns:
         repeat(auto-fill, minmax(180px, 1fr));
+
     gap: 20px;
 }
 
 .game-card {
     background: white;
+
     border-radius: 9px;
+
     overflow: hidden;
+
     cursor: pointer;
+
     transition: transform .15s;
+
     box-shadow: 0 1px 3px rgba(0,0,0,.08);
 }
 
@@ -351,11 +431,17 @@ input::placeholder {
 
 .thumbnail {
     width: 100%;
+
     aspect-ratio: 16 / 10;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-size: 45px;
+
     color: white;
 }
 
@@ -397,14 +483,19 @@ input::placeholder {
 
 .game-name {
     font-weight: bold;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
 .players {
     color: #777;
+
     font-size: 13px;
+
     margin-top: 6px;
 }
 
@@ -415,35 +506,53 @@ input::placeholder {
 
 .admin {
     max-width: 750px;
+
     margin: auto;
+
     background: white;
+
     padding: 25px;
+
     border-radius: 10px;
 }
 
 .admin-search {
     width: 100%;
+
     margin: 15px 0 20px;
+
     background: #f1f1f1 !important;
+
     border: 1px solid #ddd;
+
     height: 45px;
 }
 
 .user {
     background: #f1f1f1;
+
     padding: 15px;
+
     border-radius: 8px;
+
     margin: 10px 0;
 }
 
 .admin-button {
     width: 100%;
+
     padding: 12px;
+
     border: none;
+
     border-radius: 7px;
+
     background: #222;
+
     color: white;
+
     margin-top: 8px;
+
     cursor: pointer;
 }
 
@@ -457,41 +566,61 @@ input::placeholder {
 
 .ban-controls {
     margin-top: 12px;
+
     padding-top: 12px;
+
     border-top: 1px solid #ddd;
 }
 
 .ban-controls label {
     display: block;
+
     margin-top: 10px;
+
     margin-bottom: 5px;
 }
 
 .ban-controls input[type="number"] {
     width: 45%;
+
     display: inline-block;
+
     margin: 0;
+
     height: 42px;
 }
 
 .ban-controls select {
     width: 50%;
+
     height: 42px;
+
     padding: 8px;
+
     border: 1px solid #aaa;
+
     border-radius: 7px;
+
     background: white;
+
     font-size: 15px;
 }
 
 .ban-controls textarea {
     width: 100%;
+
     min-height: 80px;
+
     padding: 10px;
+
     border: 1px solid #aaa;
+
     border-radius: 7px;
+
     resize: vertical;
+
     font-family: Arial, sans-serif;
+
     font-size: 14px;
 }
 
@@ -513,12 +642,15 @@ input::placeholder {
 
     .sidebar {
         width: 70px;
+
         padding: 15px 8px;
     }
 
     .side-button {
         font-size: 0;
+
         text-align: center;
+
         padding: 0;
     }
 
@@ -528,11 +660,13 @@ input::placeholder {
 
     .content {
         margin-left: 70px;
+
         padding: 85px 15px 30px;
     }
 
     .topbar {
         padding: 0 10px;
+
         gap: 8px;
     }
 
@@ -542,6 +676,7 @@ input::placeholder {
 
     .search {
         width: auto;
+
         flex: 1;
     }
 
@@ -552,11 +687,13 @@ input::placeholder {
     .game-grid {
         grid-template-columns:
             repeat(2, 1fr);
+
         gap: 10px;
     }
 
     .ban-box {
-        padding: 25px;
+        padding: 35px 25px;
+        min-height: 520px;
     }
 
 }
@@ -595,10 +732,7 @@ input::placeholder {
 <!-- LOGIN / REGISTER -->
 <!-- ================================================= -->
 
-<div
-    id="authScreen"
-    class="auth-container"
->
+<div id="authScreen" class="auth-container">
 
     <div id="loginForm">
 
@@ -649,10 +783,7 @@ input::placeholder {
     </div>
 
 
-    <div
-        id="registerForm"
-        class="hidden"
-    >
+    <div id="registerForm" class="hidden">
 
         <h1>🎮 DynoBlocks</h1>
 
@@ -707,10 +838,7 @@ input::placeholder {
 <!-- BAN SCREEN -->
 <!-- ================================================= -->
 
-<div
-    id="banScreen"
-    class="ban-screen hidden"
->
+<div id="banScreen" class="ban-screen hidden">
 
     <div class="ban-box">
 
@@ -722,10 +850,10 @@ input::placeholder {
         </div>
 
         <div
-            id="banMessage"
+            id="banSubtitle"
             class="ban-text"
         >
-            Our content monitors have determined that your behaviour on DynoBlocks has been in violation with our Terms Of Use.
+            Our content monsters have determined that your behaviour on DynoBlocks has been in violation with our Terms Of Use.
         </div>
 
 
@@ -765,10 +893,7 @@ input::placeholder {
 <!-- APP -->
 <!-- ================================================= -->
 
-<div
-    id="app"
-    class="app hidden"
->
+<div id="app" class="app hidden">
 
 
     <!-- TOP BAR -->
@@ -856,10 +981,8 @@ input::placeholder {
 
     <!-- HOME -->
 
-    <main
-        id="homeContent"
-        class="content"
-    >
+    <main id="homeContent" class="content">
+
 
         <div class="profile">
 
@@ -1249,50 +1372,40 @@ function calculateBanExpiry(amount, unit) {
 
     if (unit === "seconds") {
 
-        return new Date(
-            now.getTime() +
-            amount * 1000
-        ).getTime();
+        return now.getTime() +
+            amount * 1000;
 
     }
 
 
     if (unit === "minutes") {
 
-        return new Date(
-            now.getTime() +
-            amount * 60 * 1000
-        ).getTime();
+        return now.getTime() +
+            amount * 60 * 1000;
 
     }
 
 
     if (unit === "hours") {
 
-        return new Date(
-            now.getTime() +
-            amount * 60 * 60 * 1000
-        ).getTime();
+        return now.getTime() +
+            amount * 60 * 60 * 1000;
 
     }
 
 
     if (unit === "days") {
 
-        return new Date(
-            now.getTime() +
-            amount * 24 * 60 * 60 * 1000
-        ).getTime();
+        return now.getTime() +
+            amount * 24 * 60 * 60 * 1000;
 
     }
 
 
     if (unit === "weeks") {
 
-        return new Date(
-            now.getTime() +
-            amount * 7 * 24 * 60 * 60 * 1000
-        ).getTime();
+        return now.getTime() +
+            amount * 7 * 24 * 60 * 60 * 1000;
 
     }
 
@@ -1382,27 +1495,16 @@ function showBanScreen(user) {
 
 
     const title =
-        document.getElementById("banTitle");
+        document.getElementById(
+            "banTitle"
+        );
 
 
-    const message =
-        document.getElementById("banMessage");
+    const subtitle =
+        document.getElementById(
+            "banSubtitle"
+        );
 
-
-    document
-        .getElementById("banReasonText")
-        .textContent =
-            user.banReason ||
-            "No reason provided.";
-
-
-    const duration =
-        document.getElementById("banDurationText");
-
-
-    /*
-     * PERMANENT BAN
-     */
 
     if (
         user.banUnit === "permanent"
@@ -1413,29 +1515,46 @@ function showBanScreen(user) {
         title.textContent =
             "Account Terminated";
 
+    }
 
-        message.textContent =
-            "Our content monitors have determined that your behaviour on DynoBlocks has been in violation with our Terms Of Use.";
+    else {
 
-
-        duration.innerHTML =
-            '<span class="ban-permanent">This action is permanent.</span>';
-
-        return;
+        title.textContent =
+            "Account Suspended";
 
     }
 
 
-    /*
-     * TEMPORARY BAN
-     */
-
-    title.textContent =
-        "Account Suspended";
+    subtitle.textContent =
+        "Our content monsters have determined that your behaviour on DynoBlocks has been in violation with our Terms Of Use.";
 
 
-    message.textContent =
-        "Our content monitors have determined that your behaviour on DynoBlocks has been in violation with our Terms Of Use.";
+    document
+        .getElementById("banReasonText")
+        .textContent =
+            user.banReason ||
+            "No reason provided.";
+
+
+    const duration =
+        document
+            .getElementById(
+                "banDurationText"
+            );
+
+
+    if (
+        user.banUnit === "permanent"
+        ||
+        user.banExpires === null
+    ) {
+
+        duration.innerHTML =
+            '<span class="ban-permanent">This account has been permanently terminated.</span>';
+
+        return;
+
+    }
 
 
     let unit =
@@ -1466,20 +1585,26 @@ function login() {
 
     const username =
         document
-            .getElementById("loginUsername")
+            .getElementById(
+                "loginUsername"
+            )
             .value
             .trim();
 
 
     const password =
         document
-            .getElementById("loginPassword")
+            .getElementById(
+                "loginPassword"
+            )
             .value;
 
 
     const message =
         document
-            .getElementById("loginMessage");
+            .getElementById(
+                "loginMessage"
+            );
 
 
     const user =
@@ -1538,20 +1663,26 @@ function register() {
 
     const username =
         document
-            .getElementById("registerUsername")
+            .getElementById(
+                "registerUsername"
+            )
             .value
             .trim();
 
 
     const password =
         document
-            .getElementById("registerPassword")
+            .getElementById(
+                "registerPassword"
+            )
             .value;
 
 
     const message =
         document
-            .getElementById("registerMessage");
+            .getElementById(
+                "registerMessage"
+            );
 
 
     if (!username || !password) {
@@ -1811,17 +1942,15 @@ function openAdmin() {
 function renderAdmin() {
 
     const list =
-        document
-            .getElementById(
-                "adminUsers"
-            );
+        document.getElementById(
+            "adminUsers"
+        );
 
 
     const searchBox =
-        document
-            .getElementById(
-                "adminPlayerSearch"
-            );
+        document.getElementById(
+            "adminPlayerSearch"
+        );
 
 
     const search =
@@ -1879,14 +2008,14 @@ function renderAdmin() {
                 ) {
 
                     status =
-                        "🚫 Permanently Banned";
+                        "🚫 Permanently Terminated";
 
                 }
 
                 else {
 
                     status =
-                        "🚫 Banned for " +
+                        "🚫 Suspended for " +
                         user.banDuration +
                         " " +
                         user.banUnit +
@@ -1920,6 +2049,10 @@ function renderAdmin() {
 
             `;
 
+
+            /* =========================
+               UNBAN
+            ========================= */
 
             if (
                 isUserBanned(user)
@@ -1971,6 +2104,10 @@ function renderAdmin() {
 
             }
 
+
+            /* =========================
+               BAN CONTROLS
+            ========================= */
 
             else {
 
@@ -2223,6 +2360,10 @@ function renderAdmin() {
         }
     );
 
+
+    /* =========================
+       NO RESULTS
+    ========================= */
 
     if (
         list.children.length === 0
