@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DynoBlocks</title>
+
+<title>Dynablox</title>
 
 <style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: #f5f5f5;
     color: #191919;
 }
 
-/* =========================
-   GENERAL
-========================= */
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
 
 .hidden {
     display: none !important;
 }
 
-button {
-    font-family: Arial, sans-serif;
-    cursor: pointer;
-}
 
-input,
-textarea,
-select {
-    font-family: Arial, sans-serif;
-}
-
-/* =========================
+/* =========================================================
    AUTH
-========================= */
+========================================================= */
 
 .auth-container {
     width: 90%;
@@ -52,7 +56,7 @@ select {
 
 .auth-container h1 {
     text-align: center;
-    margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .auth-container h2 {
@@ -60,7 +64,7 @@ select {
     font-size: 22px;
 }
 
-.auth-container input {
+input {
     display: block;
     width: 100%;
     height: 50px;
@@ -68,9 +72,15 @@ select {
     padding: 12px;
     border: 1px solid #aaa;
     border-radius: 7px;
-    background: white;
-    color: black;
+    background: white !important;
+    color: black !important;
+    -webkit-text-fill-color: black !important;
     font-size: 16px;
+}
+
+input::placeholder {
+    color: #777 !important;
+    -webkit-text-fill-color: #777 !important;
 }
 
 .auth-button {
@@ -105,22 +115,23 @@ select {
     margin-top: 12px;
 }
 
-/* =========================
-   BAN SCREEN
-========================= */
 
-.ban-screen {
+/* =========================================================
+   MODERATION SCREEN
+========================================================= */
+
+.moderation-screen {
     min-height: 100vh;
     background: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px 20px;
+    padding: 25px;
 }
 
-.ban-box {
+.moderation-box {
     width: 100%;
-    max-width: 700px;
+    max-width: 650px;
     min-height: 520px;
     background: white;
     border: 1px solid #ddd;
@@ -129,38 +140,39 @@ select {
     box-shadow: 0 4px 20px rgba(0,0,0,.10);
 }
 
-.ban-title {
+.moderation-title {
     font-size: 32px;
     font-weight: bold;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-.ban-subtitle {
-    font-size: 17px;
+.moderation-subtitle {
+    font-size: 16px;
     line-height: 1.6;
     color: #444;
     margin-bottom: 25px;
 }
 
-.ban-reason {
+.moderation-reason {
     background: #f5f5f5;
     border-radius: 7px;
-    padding: 16px;
+    padding: 18px;
     margin: 20px 0;
 }
 
-.ban-reason-title {
+.moderation-reason-title {
     font-weight: bold;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
 }
 
-.ban-text {
+.moderation-duration {
     font-size: 16px;
     line-height: 1.6;
     color: #444;
+    margin-top: 20px;
 }
 
-.ban-appeal {
+.moderation-terms {
     margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid #ddd;
@@ -169,19 +181,21 @@ select {
     line-height: 1.6;
 }
 
-.ban-permanent {
+.moderation-permanent {
     color: #d32f2f;
     font-weight: bold;
 }
 
-/* =========================
-   REACTIVATION
-========================= */
+
+/* =========================================================
+   REACTIVATE
+========================================================= */
 
 .reactivate-box {
     margin-top: 30px;
-    padding-top: 25px;
-    border-top: 1px solid #ddd;
+    padding: 18px;
+    background: #f7f7f7;
+    border-radius: 8px;
 }
 
 .reactivate-label {
@@ -189,19 +203,19 @@ select {
     align-items: center;
     gap: 10px;
     font-size: 15px;
-    color: #444;
     cursor: pointer;
 }
 
 .reactivate-label input {
     width: 20px;
     height: 20px;
+    margin: 0;
 }
 
 .reactivate-button {
-    margin-top: 18px;
     width: 100%;
     height: 45px;
+    margin-top: 15px;
     border: none;
     border-radius: 7px;
     background: #222;
@@ -210,21 +224,23 @@ select {
 }
 
 .reactivate-button:disabled {
-    opacity: .45;
+    opacity: .5;
     cursor: not-allowed;
 }
 
-/* =========================
+
+/* =========================================================
    APP
-========================= */
+========================================================= */
 
 .app {
     min-height: 100vh;
 }
 
-/* =========================
-   TOPBAR
-========================= */
+
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .topbar {
     height: 60px;
@@ -232,7 +248,7 @@ select {
     border-bottom: 1px solid #ddd;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
     padding: 0 20px;
     position: fixed;
     top: 0;
@@ -251,10 +267,8 @@ select {
     width: 300px;
     height: 38px;
     margin: 0;
-    padding: 10px;
-    background: #f1f1f1;
+    background: #f1f1f1 !important;
     border: none;
-    border-radius: 7px;
     font-size: 14px;
 }
 
@@ -265,16 +279,15 @@ select {
     gap: 15px;
 }
 
+.coins {
+    font-weight: bold;
+}
+
 .top-button {
     border: none;
     background: transparent;
     font-size: 15px;
     padding: 8px;
-    border-radius: 7px;
-}
-
-.top-button:hover {
-    background: #eee;
 }
 
 .notification-button {
@@ -285,20 +298,21 @@ select {
     position: absolute;
     top: -4px;
     right: -4px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
     background: #e53935;
     color: white;
-    min-width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    font-size: 10px;
+    font-size: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* =========================
+
+/* =========================================================
    SIDEBAR
-========================= */
+========================================================= */
 
 .sidebar {
     position: fixed;
@@ -333,9 +347,10 @@ select {
     font-weight: bold;
 }
 
-/* =========================
+
+/* =========================================================
    CONTENT
-========================= */
+========================================================= */
 
 .content {
     margin-left: 220px;
@@ -343,9 +358,10 @@ select {
     max-width: 1400px;
 }
 
-/* =========================
+
+/* =========================================================
    PROFILE
-========================= */
+========================================================= */
 
 .profile {
     display: flex;
@@ -375,11 +391,12 @@ select {
     color: #777;
 }
 
-/* =========================
-   VERIFIED
-========================= */
 
-.verified {
+/* =========================================================
+   VERIFIED BADGE
+========================================================= */
+
+.verified-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -394,9 +411,16 @@ select {
     vertical-align: middle;
 }
 
-/* =========================
-   SECTION
-========================= */
+.username-line {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 .section {
     margin-bottom: 40px;
@@ -414,9 +438,16 @@ select {
     font-size: 21px;
 }
 
-/* =========================
+.see-all {
+    border: none;
+    background: transparent;
+    color: #555;
+}
+
+
+/* =========================================================
    GAME GRID
-========================= */
+========================================================= */
 
 .game-grid {
     display: grid;
@@ -477,30 +508,33 @@ select {
     margin-top: 6px;
 }
 
-/* =========================
-   PEOPLE
-========================= */
 
-.people-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
-    gap: 15px;
+/* =========================================================
+   FRIENDS
+========================================================= */
+
+.friends-container {
+    max-width: 850px;
+    margin: auto;
 }
 
-.person-card {
+.friend-search {
+    background: white !important;
+    border: 1px solid #ddd;
+}
+
+.friend-card {
     background: white;
-    padding: 18px;
     border-radius: 9px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.08);
-}
-
-.person-header {
+    padding: 16px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.07);
 }
 
-.person-avatar {
+.friend-avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -508,80 +542,91 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 23px;
-}
-
-.person-name {
-    font-weight: bold;
-}
-
-.person-actions {
-    margin-top: 15px;
-    display: flex;
-    gap: 8px;
-}
-
-.small-button {
-    flex: 1;
-    height: 38px;
-    border: none;
-    border-radius: 6px;
-    background: #222;
-    color: white;
-}
-
-.small-button.secondary {
-    background: #eee;
-    color: #222;
-}
-
-/* =========================
-   FRIENDS
-========================= */
-
-.friend-card {
-    background: white;
-    padding: 15px;
-    border-radius: 9px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    flex-shrink: 0;
 }
 
 .friend-info {
     flex: 1;
 }
 
+.friend-name {
+    font-weight: bold;
+}
+
 .friend-status {
     color: #777;
     font-size: 13px;
+    margin-top: 4px;
 }
 
-/* =========================
+.friend-actions {
+    display: flex;
+    gap: 7px;
+}
+
+.friend-button {
+    border: none;
+    border-radius: 6px;
+    padding: 9px 13px;
+    background: #222;
+    color: white;
+}
+
+.friend-button.secondary {
+    background: #eee;
+    color: #222;
+}
+
+
+/* =========================================================
    NOTIFICATIONS
-========================= */
+========================================================= */
 
-.notification {
+.notification-panel {
+    max-width: 750px;
+    margin: auto;
+}
+
+.notification-card {
     background: white;
-    padding: 17px;
-    border-radius: 9px;
+    border-radius: 8px;
+    padding: 16px;
     margin-bottom: 10px;
-    border: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(0,0,0,.07);
 }
 
-.notification-time {
-    color: #888;
-    font-size: 12px;
-    margin-top: 5px;
+.notification-card p {
+    margin: 0 0 12px;
 }
 
-/* =========================
+.notification-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.accept-button {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 9px 15px;
+    border-radius: 6px;
+}
+
+.decline-button {
+    background: #eee;
+    color: #222;
+    border: none;
+    padding: 9px 15px;
+    border-radius: 6px;
+}
+
+
+/* =========================================================
    ADMIN
-========================= */
+========================================================= */
 
 .admin {
-    max-width: 800px;
+    max-width: 750px;
     margin: auto;
     background: white;
     padding: 25px;
@@ -591,11 +636,9 @@ select {
 .admin-search {
     width: 100%;
     margin: 15px 0 20px;
-    background: #f1f1f1;
+    background: #f1f1f1 !important;
     border: 1px solid #ddd;
     height: 45px;
-    padding: 10px;
-    border-radius: 7px;
 }
 
 .user {
@@ -644,7 +687,6 @@ select {
     display: inline-block;
     margin: 0;
     height: 42px;
-    padding: 8px;
 }
 
 .ban-controls select {
@@ -654,6 +696,7 @@ select {
     border: 1px solid #aaa;
     border-radius: 7px;
     background: white;
+    font-size: 15px;
 }
 
 .ban-controls textarea {
@@ -663,13 +706,27 @@ select {
     border: 1px solid #aaa;
     border-radius: 7px;
     resize: vertical;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media(max-width:700px) {
+/* =========================================================
+   MODERATOR
+========================================================= */
+
+.moderator-label {
+    color: #1877f2;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
 
     .sidebar {
         width: 70px;
@@ -697,48 +754,59 @@ select {
     }
 
     .search {
-        flex: 1;
         width: auto;
+        flex: 1;
     }
 
     .top-right {
-        gap: 2px;
-    }
-
-    .top-right .logout-text {
         display: none;
     }
 
     .game-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 
-    .ban-box {
+    .moderation-box {
         padding: 25px;
+        min-height: 500px;
+    }
+
+    .moderation-title {
+        font-size: 27px;
+    }
+
+    .friend-actions {
+        flex-direction: column;
     }
 }
+
 </style>
+
 </head>
 
 <body>
 
-<!-- =================================================
-AUTH
-================================================= -->
+
+<!-- =========================================================
+     LOGIN / REGISTER
+========================================================= -->
 
 <div id="authScreen" class="auth-container">
 
     <div id="loginForm">
 
-        <h1>DynoBlocks</h1>
+        <h1>Dynablox</h1>
+
         <h2>Login</h2>
 
         <input
             id="loginUsername"
             type="text"
             placeholder="Username"
-            autocomplete="off"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
         >
 
         <input
@@ -747,13 +815,20 @@ AUTH
             placeholder="Password"
         >
 
-        <button class="auth-button" onclick="login()">
+        <button
+            class="auth-button"
+            onclick="login()"
+        >
             Login
         </button>
 
-        <div id="loginMessage" class="message"></div>
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
 
         <p class="switch-text">
+
             Don't have an account?
 
             <button
@@ -762,21 +837,28 @@ AUTH
             >
                 Create one
             </button>
+
         </p>
 
     </div>
 
 
-    <div id="registerForm" class="hidden">
+    <div
+        id="registerForm"
+        class="hidden"
+    >
 
-        <h1>DynoBlocks</h1>
+        <h1>Dynablox</h1>
+
         <h2>Create Account</h2>
 
         <input
             id="registerUsername"
             type="text"
             placeholder="Username"
-            autocomplete="off"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
         >
 
         <input
@@ -785,13 +867,20 @@ AUTH
             placeholder="Password"
         >
 
-        <button class="auth-button" onclick="register()">
+        <button
+            class="auth-button"
+            onclick="register()"
+        >
             Create Account
         </button>
 
-        <div id="registerMessage" class="message"></div>
+        <div
+            id="registerMessage"
+            class="message"
+        ></div>
 
         <p class="switch-text">
+
             Already have an account?
 
             <button
@@ -800,6 +889,7 @@ AUTH
             >
                 Log in
             </button>
+
         </p>
 
     </div>
@@ -807,46 +897,61 @@ AUTH
 </div>
 
 
-<!-- =================================================
-BAN SCREEN
-================================================= -->
+<!-- =========================================================
+     MODERATION SCREEN
+========================================================= -->
 
-<div id="banScreen" class="ban-screen hidden">
+<div
+    id="moderationScreen"
+    class="moderation-screen hidden"
+>
 
-    <div class="ban-box">
+    <div class="moderation-box">
 
-        <div id="banTitle" class="ban-title">
-            Account suspended
+        <div
+            id="moderationTitle"
+            class="moderation-title"
+        >
+            Account Suspended
         </div>
 
-        <div class="ban-subtitle">
-            Our content monsters have determined that your
-            behaviour on DynoBlocks has been in violation
-            with our Terms Of Use.
+        <div class="moderation-subtitle">
+
+            Our content monsters have determined that
+            your behaviour on Dynablox has been in
+            violation with our Terms Of Use.
+
         </div>
 
-        <div class="ban-reason">
+        <div class="moderation-reason">
 
-            <div class="ban-reason-title">
+            <div class="moderation-reason-title">
                 Reason
             </div>
 
-            <div id="banReasonText">
+            <div id="moderationReason">
                 No reason provided.
             </div>
 
         </div>
 
-        <div id="banDurationText" class="ban-text"></div>
+        <div
+            id="moderationDuration"
+            class="moderation-duration"
+        ></div>
 
-        <div class="ban-appeal">
-            Please follow the DynoBlocks Terms Of Use when
-            using the platform. If you believe this
-            moderation action was made incorrectly, you may
-            contact the game's support team.
+        <div class="moderation-terms">
+
+            By continuing to use Dynablox, you agree
+            to follow the Dynablox Terms Of Use and
+            community rules.
+
         </div>
 
-        <div id="reactivationArea" class="reactivate-box hidden">
+        <div
+            id="reactivateSection"
+            class="reactivate-box hidden"
+        >
 
             <label class="reactivate-label">
 
@@ -878,516 +983,731 @@ BAN SCREEN
 </div>
 
 
-<!-- =================================================
-APP
-================================================= -->
+<!-- =========================================================
+     MAIN APP
+========================================================= -->
 
-<div id="app" class="app hidden">
-
-    <header class="topbar">
-
-        <div class="logo">
-            DynoBlocks
-        </div>
-
-        <input
-            id="search"
-            class="search"
-            placeholder="Search games..."
-            oninput="searchGames()"
-        >
-
-        <div class="top-right">
-
-            <button
-                class="top-button notification-button"
-                onclick="openNotifications()"
-            >
-                Notifications
-
-                <span
-                    id="notificationCount"
-                    class="notification-count hidden"
-                >
-                    0
-                </span>
-
-            </button>
-
-            <button
-                class="top-button"
-                onclick="logout()"
-            >
-                <span class="logout-text">
-                    Logout
-                </span>
-                ↪
-            </button>
-
-        </div>
-
-    </header>
+<div
+    id="app"
+    class="app hidden"
+>
 
 
-    <aside class="sidebar">
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+<header class="topbar">
+
+    <div class="logo">
+        Dynablox
+    </div>
+
+    <input
+        id="search"
+        class="search"
+        placeholder="Search games"
+        oninput="searchGames()"
+    >
+
+    <div class="top-right">
 
         <button
-            id="homeButton"
-            class="side-button active"
-            onclick="showHome()"
+            class="top-button notification-button"
+            onclick="showNotifications()"
         >
-            Home
+            Notifications
+
+            <span
+                id="notificationCount"
+                class="notification-count hidden"
+            >
+                0
+            </span>
+
         </button>
 
         <button
-            class="side-button"
-            onclick="openPeople()"
-        >
-            People
-        </button>
-
-        <button
-            class="side-button"
-            onclick="openFriends()"
+            class="top-button"
+            onclick="showFriends()"
         >
             Friends
         </button>
 
-        <button
-            class="side-button"
-            onclick="openNotifications()"
-        >
-            Notifications
-        </button>
+        <div class="coins">
+            Coins:
+            <span id="coinAmount">100</span>
+        </div>
 
         <button
-            class="side-button"
-            onclick="openProfile()"
+            class="top-button"
+            onclick="logout()"
         >
-            Profile
+            Logout
         </button>
 
-        <button
-            id="adminButton"
-            class="side-button hidden"
-            onclick="openAdmin()"
-        >
-            Admin
-        </button>
+    </div>
 
-    </aside>
+</header>
 
 
-    <!-- HOME -->
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 
-    <main id="homeContent" class="content">
+<aside class="sidebar">
 
-        <div class="profile">
+    <button
+        class="side-button active"
+        onclick="showHome()"
+    >
+        Home
+    </button>
 
-            <div class="avatar">
-                D
-            </div>
+    <button
+        class="side-button"
+        onclick="showFriends()"
+    >
+        Friends
+    </button>
 
-            <div>
+    <button
+        class="side-button"
+        onclick="showNotifications()"
+    >
+        Notifications
+    </button>
+
+    <button
+        class="side-button"
+        onclick="alert('Discover coming soon!')"
+    >
+        Discover
+    </button>
+
+    <button
+        class="side-button"
+        onclick="alert('Avatar coming soon!')"
+    >
+        Avatar
+    </button>
+
+    <button
+        class="side-button"
+        onclick="alert('Inventory coming soon!')"
+    >
+        Inventory
+    </button>
+
+    <button
+        id="adminButton"
+        class="side-button hidden"
+        onclick="openAdmin()"
+    >
+        Admin
+    </button>
+
+</aside>
+
+
+<!-- =========================================================
+     HOME
+========================================================= -->
+
+<main
+    id="homeContent"
+    class="content"
+>
+
+    <div class="profile">
+
+        <div class="avatar">
+            👤
+        </div>
+
+        <div>
+
+            <div class="username-line">
 
                 <h1 id="welcomeName">
                     Welcome!
                 </h1>
 
-                <p>
-                    What will you play today?
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <section class="section">
-
-            <div class="section-header">
-                <h2>Continue</h2>
-            </div>
-
-            <div class="game-grid">
-
-                <div
-                    class="game-card"
-                    data-name="Boat Racing"
-                    onclick="playGame('Boat Racing')"
+                <span
+                    id="welcomeVerified"
+                    class="verified-badge hidden"
                 >
-
-                    <div class="thumbnail blue">
-                        B
-                    </div>
-
-                    <div class="game-info">
-
-                        <div class="game-name">
-                            Boat Racing
-                        </div>
-
-                        <div class="players">
-                            1.2K playing
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="game-card"
-                    data-name="Ice Track"
-                    onclick="playGame('Ice Track')"
-                >
-
-                    <div class="thumbnail green">
-                        I
-                    </div>
-
-                    <div class="game-info">
-
-                        <div class="game-name">
-                            Ice Track
-                        </div>
-
-                        <div class="players">
-                            824 playing
-                        </div>
-
-                    </div>
-
-                </div>
+                    ✓
+                </span>
 
             </div>
-
-        </section>
-
-
-        <section class="section">
-
-            <div class="section-header">
-                <h2>Recommended For You</h2>
-            </div>
-
-            <div class="game-grid">
-
-                <div
-                    class="game-card"
-                    data-name="Adventure World"
-                    onclick="playGame('Adventure World')"
-                >
-
-                    <div class="thumbnail orange">
-                        A
-                    </div>
-
-                    <div class="game-info">
-
-                        <div class="game-name">
-                            Adventure World
-                        </div>
-
-                        <div class="players">
-                            512 playing
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="game-card"
-                    data-name="Speed Run"
-                    onclick="playGame('Speed Run')"
-                >
-
-                    <div class="thumbnail purple">
-                        S
-                    </div>
-
-                    <div class="game-info">
-
-                        <div class="game-name">
-                            Speed Run
-                        </div>
-
-                        <div class="players">
-                            302 playing
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- PEOPLE -->
-
-    <main id="peopleContent" class="content hidden">
-
-        <div class="section">
-
-            <div class="section-header">
-                <h2>Find People</h2>
-            </div>
-
-            <input
-                id="peopleSearch"
-                class="admin-search"
-                placeholder="Search for a player..."
-                oninput="renderPeople()"
-            >
-
-            <div id="peopleList" class="people-grid"></div>
-
-        </div>
-
-    </main>
-
-
-    <!-- FRIENDS -->
-
-    <main id="friendsContent" class="content hidden">
-
-        <div class="section">
-
-            <div class="section-header">
-                <h2>Friends</h2>
-            </div>
-
-            <div id="friendsList"></div>
-
-        </div>
-
-    </main>
-
-
-    <!-- NOTIFICATIONS -->
-
-    <main id="notificationsContent" class="content hidden">
-
-        <div class="section">
-
-            <div class="section-header">
-                <h2>Notifications</h2>
-            </div>
-
-            <div id="notificationsList"></div>
-
-        </div>
-
-    </main>
-
-
-    <!-- PROFILE -->
-
-    <main id="profileContent" class="content hidden">
-
-        <div class="section">
-
-            <div class="profile">
-
-                <div class="avatar">
-                    D
-                </div>
-
-                <div>
-
-                    <h1 id="profileName"></h1>
-
-                    <p id="profileInfo"></p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </main>
-
-
-    <!-- ADMIN -->
-
-    <main id="adminContent" class="content hidden">
-
-        <div class="admin">
-
-            <h1>Admin Panel</h1>
 
             <p>
-                Manage DynoBlocks users and moderation.
+                What will you play today?
             </p>
-
-            <input
-                id="adminPlayerSearch"
-                class="admin-search"
-                placeholder="Search for a player..."
-                oninput="renderAdmin()"
-            >
-
-            <div id="adminUsers"></div>
 
         </div>
 
-    </main>
+    </div>
+
+
+    <!-- CONTINUE -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>
+                Continue
+            </h2>
+
+            <button
+                class="see-all"
+                onclick="alert('More games coming soon!')"
+            >
+                See All
+            </button>
+
+        </div>
+
+        <div class="game-grid">
+
+            <div
+                class="game-card"
+                data-name="Boat Racing"
+                onclick="playGame('Boat Racing')"
+            >
+
+                <div class="thumbnail blue">
+                    🚤
+                </div>
+
+                <div class="game-info">
+
+                    <div class="game-name">
+                        Boat Racing
+                    </div>
+
+                    <div class="players">
+                        1.2K playing
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="game-card"
+                data-name="Ice Track"
+                onclick="playGame('Ice Track')"
+            >
+
+                <div class="thumbnail green">
+                    🧊
+                </div>
+
+                <div class="game-info">
+
+                    <div class="game-name">
+                        Ice Track
+                    </div>
+
+                    <div class="players">
+                        824 playing
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RECOMMENDED -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>
+                Recommended For You
+            </h2>
+
+        </div>
+
+        <div class="game-grid">
+
+            <div
+                class="game-card"
+                data-name="Adventure World"
+                onclick="playGame('Adventure World')"
+            >
+
+                <div class="thumbnail orange">
+                    🌎
+                </div>
+
+                <div class="game-info">
+
+                    <div class="game-name">
+                        Adventure World
+                    </div>
+
+                    <div class="players">
+                        512 playing
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="game-card"
+                data-name="Speed Run"
+                onclick="playGame('Speed Run')"
+            >
+
+                <div class="thumbnail purple">
+                    ⚡
+                </div>
+
+                <div class="game-info">
+
+                    <div class="game-name">
+                        Speed Run
+                    </div>
+
+                    <div class="players">
+                        302 playing
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="game-card"
+                data-name="City Life"
+                onclick="playGame('City Life')"
+            >
+
+                <div class="thumbnail blue">
+                    🏙️
+                </div>
+
+                <div class="game-info">
+
+                    <div class="game-name">
+                        City Life
+                    </div>
+
+                    <div class="players">
+                        190 playing
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="game-card"
+                data-name="Mystery Island"
+                onclick="playGame('Mystery Island')"
+            >
+
+                <div class="thumbnail green">
+                    🏝️
+                </div>
+
+                <div class="game-info">
+
+                    <div class="game-name">
+                        Mystery Island
+                    </div>
+
+                    <div class="players">
+                        88 playing
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FRIENDS PAGE
+========================================================= -->
+
+<main
+    id="friendsContent"
+    class="content hidden"
+>
+
+    <div class="friends-container">
+
+        <h1>Friends</h1>
+
+        <p>
+            Find people on Dynablox and send friend requests.
+        </p>
+
+        <input
+            id="friendSearch"
+            class="friend-search"
+            type="text"
+            placeholder="Search for players..."
+            oninput="renderFriendsPage()"
+            autocomplete="off"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
+        >
+
+        <div id="friendsList"></div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     NOTIFICATIONS PAGE
+========================================================= -->
+
+<main
+    id="notificationsContent"
+    class="content hidden"
+>
+
+    <div class="notification-panel">
+
+        <h1>Notifications</h1>
+
+        <div id="notificationsList"></div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     ADMIN PAGE
+========================================================= -->
+
+<main
+    id="adminContent"
+    class="content hidden"
+>
+
+    <div class="admin">
+
+        <h1>Admin Panel</h1>
+
+        <p>
+            Manage users and moderation.
+        </p>
+
+        <input
+            id="adminPlayerSearch"
+            class="admin-search"
+            type="text"
+            placeholder="Search for a player..."
+            autocomplete="off"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
+            oninput="renderAdmin()"
+        >
+
+        <div id="adminUsers"></div>
+
+    </div>
+
+</main>
 
 </div>
 
 
 <script>
 
-/* =================================================
-DATABASE
-================================================= */
+/* =========================================================
+   DATABASE
+========================================================= */
 
-let users = JSON.parse(
-    localStorage.getItem("dynoblocks_users")
-) || [];
+/*
+   IMPORTANT:
 
-let currentUser = null;
+   The database is stored in localStorage.
 
+   We DO NOT replace the whole database every time
+   the page loads.
 
-/* =================================================
-CREATE USER OBJECT
-================================================= */
+   Existing accounts are preserved.
+*/
 
-function createUser(username,password) {
-
-    return {
-        username: username,
-        password: password,
-
-        owner: false,
-        moderator: false,
-        verified: false,
-
-        banned: false,
-        banReason: "",
-        banDuration: null,
-        banUnit: null,
-        banExpires: null,
-
-        friends: [],
-        friendRequests: [],
-        following: [],
-        followers: [],
-
-        notifications: []
-    };
-
-}
+let users = loadUsers();
 
 
-/* =================================================
-BOBLOX
-================================================= */
+function loadUsers() {
 
-let boblox = users.find(
-    u => u.username.toLowerCase() === "boblox"
-);
+    const saved =
+        localStorage.getItem("dynablox_users");
 
-if (!boblox) {
+    if (!saved) {
+        return [];
+    }
 
-    boblox = createUser(
-        "Boblox",
-        "owner"
-    );
+    try {
 
-    boblox.owner = true;
-    boblox.verified = true;
+        const parsed =
+            JSON.parse(saved);
 
-    users.push(boblox);
+        if (Array.isArray(parsed)) {
+            return parsed;
+        }
 
-} else {
+    } catch (error) {
 
-    boblox.owner = true;
-    boblox.verified = true;
+        console.error(
+            "Could not load users:",
+            error
+        );
+
+    }
+
+    return [];
 
 }
 
-
-/* =================================================
-ADMIN
-================================================= */
-
-let admin = users.find(
-    u => u.username.toLowerCase() === "admin"
-);
-
-if (!admin) {
-
-    admin = createUser(
-        "admin",
-        "admin123"
-    );
-
-    admin.moderator = true;
-
-    users.push(admin);
-
-}
-
-
-/* =================================================
-NORMALIZE OLD USERS
-================================================= */
-
-users.forEach(user => {
-
-    if (!Array.isArray(user.friends))
-        user.friends = [];
-
-    if (!Array.isArray(user.friendRequests))
-        user.friendRequests = [];
-
-    if (!Array.isArray(user.following))
-        user.following = [];
-
-    if (!Array.isArray(user.followers))
-        user.followers = [];
-
-    if (!Array.isArray(user.notifications))
-        user.notifications = [];
-
-});
-
-
-saveUsers();
-
-
-/* =================================================
-SAVE
-================================================= */
 
 function saveUsers() {
 
     localStorage.setItem(
-        "dynoblocks_users",
+        "dynablox_users",
         JSON.stringify(users)
     );
 
 }
 
 
-/* =================================================
-GET CURRENT USER
-================================================= */
+/* =========================================================
+   ENSURE USER DATA
+========================================================= */
+
+function normalizeUser(user) {
+
+    if (!Array.isArray(user.friends)) {
+        user.friends = [];
+    }
+
+    if (!Array.isArray(user.friendRequests)) {
+        user.friendRequests = [];
+    }
+
+    if (!Array.isArray(user.following)) {
+        user.following = [];
+    }
+
+    if (!Array.isArray(user.followers)) {
+        user.followers = [];
+    }
+
+    if (typeof user.owner !== "boolean") {
+        user.owner = false;
+    }
+
+    if (typeof user.moderator !== "boolean") {
+        user.moderator = false;
+    }
+
+    if (typeof user.verified !== "boolean") {
+        user.verified = false;
+    }
+
+    if (typeof user.banned !== "boolean") {
+        user.banned = false;
+    }
+
+    if (!("banReason" in user)) {
+        user.banReason = "";
+    }
+
+    if (!("banDuration" in user)) {
+        user.banDuration = null;
+    }
+
+    if (!("banUnit" in user)) {
+        user.banUnit = null;
+    }
+
+    if (!("banExpires" in user)) {
+        user.banExpires = null;
+    }
+
+    if (!("expiredBanPending" in user)) {
+        user.expiredBanPending = false;
+    }
+
+    return user;
+
+}
+
+
+users.forEach(normalizeUser);
+
+
+/* =========================================================
+   CREATE OWNER
+========================================================= */
+
+let owner =
+    users.find(
+        u =>
+            u.username &&
+            u.username.toLowerCase() === "boblox"
+    );
+
+
+if (!owner) {
+
+    owner = {
+
+        username: "Boblox",
+
+        password: "owner",
+
+        owner: true,
+
+        moderator: false,
+
+        banned: false,
+
+        verified: true,
+
+        friends: [],
+
+        friendRequests: [],
+
+        following: [],
+
+        followers: [],
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null,
+
+        expiredBanPending: false
+
+    };
+
+    users.push(owner);
+
+}
+
+else {
+
+    owner.owner = true;
+    owner.verified = true;
+
+    normalizeUser(owner);
+
+}
+
+
+/* =========================================================
+   CREATE ADMIN
+========================================================= */
+
+let admin =
+    users.find(
+        u =>
+            u.username &&
+            u.username.toLowerCase() === "admin"
+    );
+
+
+if (!admin) {
+
+    admin = {
+
+        username: "admin",
+
+        password: "admin123",
+
+        owner: false,
+
+        moderator: true,
+
+        banned: false,
+
+        verified: false,
+
+        friends: [],
+
+        friendRequests: [],
+
+        following: [],
+
+        followers: [],
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null,
+
+        expiredBanPending: false
+
+    };
+
+    users.push(admin);
+
+}
+
+else {
+
+    admin.moderator = true;
+
+}
+
+
+users.forEach(normalizeUser);
+
+saveUsers();
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
 
 function getCurrentUser() {
 
     const username =
-        localStorage.getItem("dynoblocks_currentUser");
+        localStorage.getItem(
+            "currentUser"
+        );
 
-    if (!username)
+    if (!username) {
         return null;
+    }
 
     return users.find(
         u =>
@@ -1398,34 +1718,80 @@ function getCurrentUser() {
 }
 
 
-/* =================================================
-BAN EXPIRY
-================================================= */
+/* =========================================================
+   USER LOOKUP
+========================================================= */
 
-function calculateBanExpiry(amount,unit) {
+function getUser(username) {
+
+    if (!username) {
+        return null;
+    }
+
+    return users.find(
+        u =>
+            u.username.toLowerCase()
+            === username.toLowerCase()
+    ) || null;
+
+}
+
+
+/* =========================================================
+   BAN EXPIRY
+========================================================= */
+
+function calculateBanExpiry(amount, unit) {
 
     const now = new Date();
 
     amount = Number(amount);
 
-    if (unit === "seconds")
-        return now.getTime() + amount * 1000;
 
-    if (unit === "minutes")
-        return now.getTime() + amount * 60000;
+    if (unit === "seconds") {
 
-    if (unit === "hours")
-        return now.getTime() + amount * 3600000;
+        return now.getTime()
+            + amount * 1000;
 
-    if (unit === "days")
-        return now.getTime() + amount * 86400000;
+    }
 
-    if (unit === "weeks")
-        return now.getTime() + amount * 604800000;
+
+    if (unit === "minutes") {
+
+        return now.getTime()
+            + amount * 60 * 1000;
+
+    }
+
+
+    if (unit === "hours") {
+
+        return now.getTime()
+            + amount * 60 * 60 * 1000;
+
+    }
+
+
+    if (unit === "days") {
+
+        return now.getTime()
+            + amount * 24 * 60 * 60 * 1000;
+
+    }
+
+
+    if (unit === "weeks") {
+
+        return now.getTime()
+            + amount * 7 * 24 * 60 * 60 * 1000;
+
+    }
+
 
     if (unit === "months") {
 
-        const expiry = new Date(now);
+        const expiry =
+            new Date(now);
 
         expiry.setMonth(
             expiry.getMonth() + amount
@@ -1435,146 +1801,333 @@ function calculateBanExpiry(amount,unit) {
 
     }
 
+
     return null;
 
 }
 
 
-/* =================================================
-BAN CHECK
-================================================= */
+/* =========================================================
+   CHECK BAN
+========================================================= */
 
 function isUserBanned(user) {
 
-    if (!user.banned)
+    if (!user) {
         return false;
+    }
 
-    if (user.banExpires === null)
+
+    if (!user.banned) {
+        return false;
+    }
+
+
+    if (user.banExpires === null) {
         return true;
+    }
+
 
     if (Date.now() >= user.banExpires) {
 
+        /*
+           The ban has expired.
+
+           Instead of immediately putting the user
+           back into the game, we mark the account
+           as waiting for reactivation.
+        */
+
         user.banned = false;
 
-        user.expiredBan = true;
+        user.expiredBanPending = true;
 
         saveUsers();
 
         return false;
+
     }
+
 
     return true;
 
 }
 
 
-/* =================================================
-BAN SCREEN
-================================================= */
+/* =========================================================
+   MODERATION SCREEN
+========================================================= */
 
-function showBanScreen(user) {
+function showModerationScreen(user) {
+
+    if (!user) {
+        return;
+    }
+
+
+    /*
+       IMPORTANT:
+
+       Moderated users are logged out immediately.
+    */
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
 
     document
         .getElementById("authScreen")
         .classList.add("hidden");
 
+
     document
         .getElementById("app")
         .classList.add("hidden");
 
+
     document
-        .getElementById("banScreen")
+        .getElementById("moderationScreen")
         .classList.remove("hidden");
 
-    const title =
-        document.getElementById("banTitle");
 
-    const duration =
-        document.getElementById("banDurationText");
+    const title =
+        document.getElementById(
+            "moderationTitle"
+        );
+
+
+    const subtitle =
+        document.getElementById(
+            "moderationDuration"
+        );
+
+
+    const reason =
+        document.getElementById(
+            "moderationReason"
+        );
+
 
     const reactivate =
-        document.getElementById("reactivationArea");
+        document.getElementById(
+            "reactivateSection"
+        );
 
-    reactivate.classList.add("hidden");
 
-    document
-        .getElementById("reactivateCheck")
-        .checked = false;
+    const check =
+        document.getElementById(
+            "reactivateCheck"
+        );
 
-    document
-        .getElementById("reactivateButton")
-        .disabled = true;
 
+    check.checked = false;
+
+
+    updateReactivateButton();
+
+
+    reason.textContent =
+        user.banReason ||
+        "No reason provided.";
+
+
+    /*
+       PERMANENT
+    */
 
     if (
+        user.banExpires === null &&
         user.banUnit === "permanent"
-        ||
-        user.banExpires === null
     ) {
 
         title.textContent =
-            "Account terminated";
+            "Account Terminated";
 
-        duration.innerHTML =
-            '<span class="ban-permanent">This account has been permanently terminated.</span>';
 
-    } else {
+        subtitle.textContent =
+            "Your account has been terminated.";
 
-        title.textContent =
-            "Account suspended";
 
-        let unit =
-            user.banUnit;
+        document
+            .getElementById("moderationDuration")
+            .innerHTML =
+                '<span class="moderation-permanent">' +
+                "This account termination is permanent." +
+                "</span>";
 
-        if (user.banDuration !== 1)
-            unit += "s";
 
-        duration.textContent =
-            "Suspended for " +
-            user.banDuration +
-            " " +
-            unit;
+        reactivate.classList.add(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       TEMPORARY
+    */
+
+    title.textContent =
+        "Account Suspended";
+
+
+    subtitle.textContent =
+        "Our content monsters have determined that your behaviour on Dynablox has been in violation with our Terms Of Use.";
+
+
+    let unit =
+        user.banUnit || "time";
+
+
+    if (
+        Number(user.banDuration) !== 1
+    ) {
+
+        unit += "s";
 
     }
 
 
     document
-        .getElementById("banReasonText")
+        .getElementById("moderationDuration")
+        .textContent =
+            "Suspended for " +
+            user.banDuration +
+            " " +
+            unit;
+
+
+    reactivate.classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* =========================================================
+   EXPIRED BAN SCREEN
+========================================================= */
+
+function showReactivationScreen(user) {
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+
+    document
+        .getElementById("authScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("app")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("moderationScreen")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("moderationTitle")
+        .textContent =
+            "Account Suspended";
+
+
+    document
+        .getElementById("moderationReason")
         .textContent =
             user.banReason ||
             "No reason provided.";
 
+
+    document
+        .getElementById("moderationDuration")
+        .textContent =
+            "Your suspension has ended. You may now re-activate your account.";
+
+
+    document
+        .querySelector(".moderation-subtitle")
+        .textContent =
+            "Your suspension period has ended. Please confirm that you will follow the Dynablox Terms Of Use before returning to the platform.";
+
+
+    document
+        .getElementById("reactivateSection")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("reactivateCheck")
+        .checked = false;
+
+
+    updateReactivateButton();
+
 }
 
 
-/* =================================================
-REACTIVATION
-================================================= */
+/* =========================================================
+   REACTIVATE BUTTON
+========================================================= */
 
 function updateReactivateButton() {
 
-    const checked =
-        document
-            .getElementById("reactivateCheck")
-            .checked;
+    const checkbox =
+        document.getElementById(
+            "reactivateCheck"
+        );
 
-    document
-        .getElementById("reactivateButton")
-        .disabled = !checked;
+
+    const button =
+        document.getElementById(
+            "reactivateButton"
+        );
+
+
+    if (
+        checkbox &&
+        button
+    ) {
+
+        button.disabled =
+            !checkbox.checked;
+
+    }
 
 }
 
 
+/* =========================================================
+   REACTIVATE ACCOUNT
+========================================================= */
+
 function reactivateAccount() {
 
-    const user = currentUser;
+    const user =
+        getCurrentReactivationUser();
 
-    if (!user)
+
+    if (!user) {
+
+        alert(
+            "Please log in again."
+        );
+
+        location.reload();
+
         return;
 
-    user.expiredBan = false;
+    }
 
-    user.banned = false;
+
+    user.expiredBanPending = false;
 
     user.banReason = "";
 
@@ -1584,74 +2137,12 @@ function reactivateAccount() {
 
     user.banExpires = null;
 
+
     saveUsers();
-
-    showApp();
-
-}
-
-
-/* =================================================
-LOGIN
-================================================= */
-
-function login() {
-
-    const username =
-        document
-            .getElementById("loginUsername")
-            .value
-            .trim();
-
-    const password =
-        document
-            .getElementById("loginPassword")
-            .value;
-
-    const message =
-        document
-            .getElementById("loginMessage");
-
-
-    const user =
-        users.find(
-            u =>
-                u.username.toLowerCase()
-                === username.toLowerCase()
-        );
-
-
-    if (!user) {
-
-        message.textContent =
-            "Account not found.";
-
-        return;
-    }
-
-
-    if (user.password !== password) {
-
-        message.textContent =
-            "Incorrect password.";
-
-        return;
-    }
-
-
-    currentUser = user;
-
-
-    if (isUserBanned(user)) {
-
-        showBanScreen(user);
-
-        return;
-    }
 
 
     localStorage.setItem(
-        "dynoblocks_currentUser",
+        "currentUser",
         user.username
     );
 
@@ -1661,9 +2152,166 @@ function login() {
 }
 
 
-/* =================================================
-REGISTER
-================================================= */
+/* =========================================================
+   FIND REACTIVATION USER
+========================================================= */
+
+function getCurrentReactivationUser() {
+
+    /*
+       Because the user is logged out while viewing
+       the moderation screen, we remember which account
+       was being moderated temporarily.
+    */
+
+    const username =
+        sessionStorage.getItem(
+            "reactivationUser"
+        );
+
+
+    if (!username) {
+        return null;
+    }
+
+
+    return getUser(username);
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function login() {
+
+    const username =
+        document
+            .getElementById("loginUsername")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
+
+
+    const message =
+        document
+            .getElementById("loginMessage");
+
+
+    message.textContent = "";
+
+
+    const user =
+        getUser(username);
+
+
+    if (!user) {
+
+        message.textContent =
+            "Account not found.";
+
+        return;
+
+    }
+
+
+    if (user.password !== password) {
+
+        message.textContent =
+            "Incorrect password.";
+
+        return;
+
+    }
+
+
+    /*
+       Permanent moderation
+    */
+
+    if (
+        user.banned &&
+        user.banExpires === null
+    ) {
+
+        sessionStorage.setItem(
+            "reactivationUser",
+            user.username
+        );
+
+        showModerationScreen(user);
+
+        return;
+
+    }
+
+
+    /*
+       Temporary moderation
+    */
+
+    if (
+        user.banned
+    ) {
+
+        if (
+            isUserBanned(user)
+        ) {
+
+            sessionStorage.setItem(
+                "reactivationUser",
+                user.username
+            );
+
+            showModerationScreen(user);
+
+            return;
+
+        }
+
+    }
+
+
+    /*
+       Expired suspension
+    */
+
+    if (
+        user.expiredBanPending
+    ) {
+
+        sessionStorage.setItem(
+            "reactivationUser",
+            user.username
+        );
+
+        showReactivationScreen(user);
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "currentUser",
+        user.username
+    );
+
+
+    showApp();
+
+}
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
 
 function register() {
 
@@ -1673,14 +2321,19 @@ function register() {
             .value
             .trim();
 
+
     const password =
         document
             .getElementById("registerPassword")
             .value;
 
+
     const message =
         document
             .getElementById("registerMessage");
+
+
+    message.textContent = "";
 
 
     if (!username || !password) {
@@ -1689,30 +2342,74 @@ function register() {
             "Please fill in everything.";
 
         return;
+
     }
 
 
-    if (users.some(
-        u =>
-            u.username.toLowerCase()
-            === username.toLowerCase()
-    )) {
+    if (
+        username.length < 3
+    ) {
+
+        message.textContent =
+            "Username must be at least 3 characters.";
+
+        return;
+
+    }
+
+
+    if (
+        users.some(
+            u =>
+                u.username.toLowerCase()
+                === username.toLowerCase()
+        )
+    ) {
 
         message.textContent =
             "That username already exists.";
 
         return;
+
     }
 
 
-    const user =
-        createUser(
-            username,
-            password
-        );
+    const newUser = {
+
+        username: username,
+
+        password: password,
+
+        owner: false,
+
+        moderator: false,
+
+        banned: false,
+
+        verified: false,
+
+        friends: [],
+
+        friendRequests: [],
+
+        following: [],
+
+        followers: [],
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null,
+
+        expiredBanPending: false
+
+    };
 
 
-    users.push(user);
+    users.push(newUser);
 
     saveUsers();
 
@@ -1729,9 +2426,9 @@ function register() {
 }
 
 
-/* =================================================
-SHOW APP
-================================================= */
+/* =========================================================
+   SHOW APP
+========================================================= */
 
 function showApp() {
 
@@ -1739,70 +2436,61 @@ function showApp() {
         .getElementById("authScreen")
         .classList.add("hidden");
 
+
     document
-        .getElementById("banScreen")
+        .getElementById("moderationScreen")
         .classList.add("hidden");
+
 
     document
         .getElementById("app")
         .classList.remove("hidden");
 
-    currentUser =
-        getCurrentUser();
 
-    updateUI();
+    updateNavigation();
 
     showHome();
 
 }
 
 
-/* =================================================
-UPDATE UI
-================================================= */
+/* =========================================================
+   UPDATE NAVIGATION
+========================================================= */
 
-function updateUI() {
+function updateNavigation() {
 
-    if (!currentUser)
+    const user =
+        getCurrentUser();
+
+
+    if (!user) {
         return;
+    }
 
 
-    document
-        .getElementById("welcomeName")
-        .innerHTML =
-            "Welcome, " +
-            escapeHTML(currentUser.username) +
-            getVerifiedHTML(currentUser);
-
-
-    document
-        .getElementById("profileName")
-        .innerHTML =
-            escapeHTML(currentUser.username) +
-            getVerifiedHTML(currentUser);
-
-
-    document
-        .getElementById("profileInfo")
-        .textContent =
-            currentUser.friends.length +
-            " friends";
+    const adminButton =
+        document.getElementById(
+            "adminButton"
+        );
 
 
     if (
-        currentUser.owner ||
-        currentUser.moderator
+        user.owner ||
+        user.moderator
     ) {
 
-        document
-            .getElementById("adminButton")
-            .classList.remove("hidden");
+        adminButton.classList.remove(
+            "hidden"
+        );
 
-    } else {
+    }
 
-        document
-            .getElementById("adminButton")
-            .classList.add("hidden");
+    else {
+
+        adminButton.classList.add(
+            "hidden"
+        );
 
     }
 
@@ -1812,45 +2500,26 @@ function updateUI() {
 }
 
 
-/* =================================================
-VERIFIED
-================================================= */
+/* =========================================================
+   HIDE ALL PAGES
+========================================================= */
 
-function getVerifiedHTML(user) {
-
-    if (!user.verified)
-        return "";
-
-    return '<span class="verified">✓</span>';
-
-}
-
-
-/* =================================================
-NAVIGATION
-================================================= */
-
-function hidePages() {
+function hideAllPages() {
 
     document
         .getElementById("homeContent")
         .classList.add("hidden");
 
-    document
-        .getElementById("peopleContent")
-        .classList.add("hidden");
 
     document
         .getElementById("friendsContent")
         .classList.add("hidden");
 
+
     document
         .getElementById("notificationsContent")
         .classList.add("hidden");
 
-    document
-        .getElementById("profileContent")
-        .classList.add("hidden");
 
     document
         .getElementById("adminContent")
@@ -1859,546 +2528,210 @@ function hidePages() {
 }
 
 
+/* =========================================================
+   HOME
+========================================================= */
+
 function showHome() {
 
-    hidePages();
+    const user =
+        getCurrentUser();
+
+
+    if (!user) {
+        return;
+    }
+
+
+    hideAllPages();
+
 
     document
         .getElementById("homeContent")
         .classList.remove("hidden");
 
+
+    const welcome =
+        document.getElementById(
+            "welcomeName"
+        );
+
+
+    welcome.textContent =
+        "Welcome, " +
+        user.username +
+        "!";
+
+
+    const verified =
+        document.getElementById(
+            "welcomeVerified"
+        );
+
+
+    if (user.verified) {
+
+        verified.classList.remove(
+            "hidden"
+        );
+
+    }
+
+    else {
+
+        verified.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    updateNavigation();
+
 }
 
 
-function openPeople() {
+/* =========================================================
+   FRIENDS PAGE
+========================================================= */
 
-    hidePages();
+function showFriends() {
 
-    document
-        .getElementById("peopleContent")
-        .classList.remove("hidden");
-
-    renderPeople();
-
-}
+    if (!getCurrentUser()) {
+        return;
+    }
 
 
-function openFriends() {
+    hideAllPages();
 
-    hidePages();
 
     document
         .getElementById("friendsContent")
         .classList.remove("hidden");
 
-    renderFriends();
+
+    renderFriendsPage();
 
 }
 
 
-function openNotifications() {
+/* =========================================================
+   FRIENDS PAGE RENDER
+========================================================= */
 
-    hidePages();
+function renderFriendsPage() {
 
-    document
-        .getElementById("notificationsContent")
-        .classList.remove("hidden");
-
-    renderNotifications();
-
-}
+    const current =
+        getCurrentUser();
 
 
-function openProfile() {
+    if (!current) {
+        return;
+    }
 
-    hidePages();
-
-    document
-        .getElementById("profileContent")
-        .classList.remove("hidden");
-
-    updateUI();
-
-}
-
-
-/* =================================================
-PEOPLE
-================================================= */
-
-function renderPeople() {
 
     const list =
-        document.getElementById("peopleList");
+        document.getElementById(
+            "friendsList"
+        );
+
+
+    const searchBox =
+        document.getElementById(
+            "friendSearch"
+        );
+
 
     const search =
-        document
-            .getElementById("peopleSearch")
-            .value
-            .trim()
-            .toLowerCase();
+        searchBox
+            ? searchBox.value
+                .trim()
+                .toLowerCase()
+            : "";
+
 
     list.innerHTML = "";
 
 
-    users.forEach(user => {
-
-        if (
-            user.username.toLowerCase()
-            === currentUser.username.toLowerCase()
-        )
-            return;
-
-
-        if (
-            search &&
-            !user.username
-                .toLowerCase()
-                .includes(search)
-        )
-            return;
-
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "person-card";
-
-
-        const isFriend =
-            currentUser.friends.includes(
-                user.username
-            );
-
-
-        const alreadySent =
-            user.friendRequests.includes(
-                currentUser.username
-            );
-
-
-        const following =
-            currentUser.following.includes(
-                user.username
-            );
-
-
-        let friendButton;
-
-
-        if (isFriend) {
-
-            friendButton =
-                `<button class="small-button secondary">
-                    Friends
-                </button>`;
-
-        } else if (alreadySent) {
-
-            friendButton =
-                `<button class="small-button secondary">
-                    Request Sent
-                </button>`;
-
-        } else {
-
-            friendButton =
-                `<button
-                    class="small-button"
-                    onclick="sendFriendRequest('${escapeAttr(user.username)}')"
-                >
-                    Add Friend
-                </button>`;
-
-        }
-
-
-        const followButton =
-            following
-
-            ?
-
-            `<button
-                class="small-button secondary"
-                onclick="toggleFollow('${escapeAttr(user.username)}')"
-            >
-                Following
-            </button>`
-
-            :
-
-            `<button
-                class="small-button secondary"
-                onclick="toggleFollow('${escapeAttr(user.username)}')"
-            >
-                Follow
-            </button>`;
-
-
-        card.innerHTML = `
-
-            <div class="person-header">
-
-                <div class="person-avatar">
-                    D
-                </div>
-
-                <div>
-
-                    <div class="person-name">
-                        ${escapeHTML(user.username)}
-                        ${getVerifiedHTML(user)}
-                    </div>
-
-                    <div class="friend-status">
-                        ${user.friends.length} friends
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="person-actions">
-
-                ${friendButton}
-
-                ${followButton}
-
-            </div>
-        `;
-
-
-        list.appendChild(card);
-
-    });
-
-
-    if (
-        list.children.length === 0
-    ) {
-
-        list.innerHTML =
-            `<div class="person-card">
-                No players found.
-            </div>`;
-
-    }
-
-}
-
-
-/* =================================================
-FRIEND REQUEST
-================================================= */
-
-function sendFriendRequest(username) {
-
-    const target =
-        findUser(username);
-
-    if (!target)
-        return;
-
-
-    if (
-        target.friendRequests.includes(
-            currentUser.username
-        )
-    )
-        return;
-
-
-    if (
-        target.friends.includes(
-            currentUser.username
-        )
-    )
-        return;
-
-
-    target.friendRequests.push(
-        currentUser.username
-    );
-
-
-    addNotification(
-        target,
-        currentUser.username +
-        " sent you a friend request."
-    );
-
-
-    saveUsers();
-
-    renderPeople();
-
-}
-
-
-/* =================================================
-ACCEPT FRIEND
-================================================= */
-
-function acceptFriend(username) {
-
-    const sender =
-        findUser(username);
-
-    if (!sender)
-        return;
-
-
-    currentUser.friendRequests =
-        currentUser.friendRequests.filter(
-            name =>
-                name.toLowerCase()
-                !== username.toLowerCase()
-        );
-
-
-    if (
-        !currentUser.friends.includes(
-            sender.username
-        )
-    ) {
-
-        currentUser.friends.push(
-            sender.username
-        );
-
-    }
-
-
-    if (
-        !sender.friends.includes(
-            currentUser.username
-        )
-    ) {
-
-        sender.friends.push(
-            currentUser.username
-        );
-
-    }
-
-
-    addNotification(
-        sender,
-        currentUser.username +
-        " accepted your friend request."
-    );
-
-
-    saveUsers();
-
-    renderNotifications();
-
-    updateUI();
-
-}
-
-
-/* =================================================
-DECLINE
-================================================= */
-
-function declineFriend(username) {
-
-    currentUser.friendRequests =
-        currentUser.friendRequests.filter(
-            name =>
-                name.toLowerCase()
-                !== username.toLowerCase()
-        );
-
-
-    saveUsers();
-
-    renderNotifications();
-
-}
-
-
-/* =================================================
-FOLLOW
-================================================= */
-
-function toggleFollow(username) {
-
-    const target =
-        findUser(username);
-
-    if (!target)
-        return;
-
-
-    const index =
-        currentUser.following.findIndex(
-            name =>
-                name.toLowerCase()
-                === target.username.toLowerCase()
-        );
-
-
-    if (index >= 0) {
-
-        currentUser.following.splice(
-            index,
-            1
-        );
-
-
-        target.followers =
-            target.followers.filter(
-                name =>
-                    name.toLowerCase()
-                    !== currentUser.username.toLowerCase()
-            );
-
-    } else {
-
-        currentUser.following.push(
-            target.username
-        );
-
-
-        if (
-            !target.followers.includes(
-                currentUser.username
+    /*
+       Show actual friends first.
+    */
+
+    const friendUsers =
+        current.friends
+            .map(
+                username =>
+                    getUser(username)
             )
+            .filter(Boolean);
+
+
+    if (!search) {
+
+        if (
+            friendUsers.length === 0
         ) {
 
-            target.followers.push(
-                currentUser.username
+            const empty =
+                document.createElement(
+                    "div"
+                );
+
+            empty.className =
+                "friend-card";
+
+            empty.textContent =
+                "You don't have any friends yet.";
+
+            list.appendChild(empty);
+
+        }
+
+        else {
+
+            friendUsers.forEach(
+                user =>
+                    addFriendCard(
+                        list,
+                        user,
+                        "friend"
+                    )
             );
 
         }
 
-
-        addNotification(
-            target,
-            currentUser.username +
-            " followed you."
-        );
+        return;
 
     }
 
 
-    saveUsers();
+    /*
+       Search all platform users.
+    */
 
-    renderPeople();
-
-}
-
-
-/* =================================================
-FRIENDS LIST
-================================================= */
-
-function renderFriends() {
-
-    const list =
-        document.getElementById("friendsList");
-
-    list.innerHTML = "";
-
-
-    if (
-        currentUser.friendRequests.length > 0
-    ) {
-
-        const requestTitle =
-            document.createElement("h3");
-
-        requestTitle.textContent =
-            "Friend Requests";
-
-        list.appendChild(
-            requestTitle
+    const results =
+        users.filter(
+            user =>
+                user.username
+                    .toLowerCase()
+                    .includes(search)
         );
 
 
-        currentUser.friendRequests
-            .forEach(username => {
-
-                const sender =
-                    findUser(username);
-
-                if (!sender)
-                    return;
-
-
-                const div =
-                    document.createElement("div");
-
-                div.className =
-                    "friend-card";
-
-
-                div.innerHTML = `
-
-                    <div class="person-avatar">
-                        D
-                    </div>
-
-                    <div class="friend-info">
-
-                        <strong>
-                            ${escapeHTML(sender.username)}
-                            ${getVerifiedHTML(sender)}
-                        </strong>
-
-                        <div class="friend-status">
-                            Wants to be your friend
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="small-button"
-                        onclick="acceptFriend('${escapeAttr(sender.username)}')"
-                    >
-                        Accept
-                    </button>
-
-                    <button
-                        class="small-button secondary"
-                        onclick="declineFriend('${escapeAttr(sender.username)}')"
-                    >
-                        Decline
-                    </button>
-                `;
-
-
-                list.appendChild(div);
-
-            });
-
-    }
-
-
-    const title =
-        document.createElement("h3");
-
-    title.textContent =
-        "Your Friends";
-
-    list.appendChild(title);
-
-
     if (
-        currentUser.friends.length === 0
+        results.length === 0
     ) {
 
         const empty =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         empty.className =
             "friend-card";
 
         empty.textContent =
-            "You don't have any friends yet.";
+            "No players found.";
 
         list.appendChild(empty);
 
@@ -2407,218 +2740,504 @@ function renderFriends() {
     }
 
 
-    currentUser.friends
-        .forEach(username => {
+    results.forEach(
+        user => {
 
-            const friend =
-                findUser(username);
-
-            if (!friend)
+            if (
+                user.username.toLowerCase()
+                === current.username.toLowerCase()
+            ) {
                 return;
+            }
 
 
-            const div =
-                document.createElement("div");
-
-            div.className =
-                "friend-card";
-
-
-            div.innerHTML = `
-
-                <div class="person-avatar">
-                    D
-                </div>
-
-                <div class="friend-info">
-
-                    <strong>
-                        ${escapeHTML(friend.username)}
-                        ${getVerifiedHTML(friend)}
-                    </strong>
-
-                    <div class="friend-status">
-                        Online
-                    </div>
-
-                </div>
-
-            `;
+            let relationship =
+                getRelationship(
+                    current,
+                    user
+                );
 
 
-            list.appendChild(div);
+            addFriendCard(
+                list,
+                user,
+                relationship
+            );
 
-        });
-
-}
-
-
-/* =================================================
-NOTIFICATIONS
-================================================= */
-
-function addNotification(user,text) {
-
-    user.notifications.unshift({
-
-        text: text,
-
-        time: new Date().toLocaleString()
-
-    });
-
-}
-
-
-function updateNotificationCount() {
-
-    const count =
-        currentUser.notifications.length;
-
-    const element =
-        document.getElementById(
-            "notificationCount"
-        );
-
-
-    element.textContent =
-        count;
-
-
-    element.classList.toggle(
-        "hidden",
-        count === 0
+        }
     );
 
 }
 
 
-function renderNotifications() {
+/* =========================================================
+   FRIEND CARD
+========================================================= */
 
-    const list =
-        document.getElementById(
-            "notificationsList"
+function addFriendCard(
+    container,
+    user,
+    relationship
+) {
+
+    const current =
+        getCurrentUser();
+
+
+    const card =
+        document.createElement(
+            "div"
         );
 
-    list.innerHTML = "";
+
+    card.className =
+        "friend-card";
 
 
-    if (
-        currentUser.friendRequests.length > 0
-    ) {
-
-        currentUser.friendRequests
-            .forEach(username => {
-
-                const sender =
-                    findUser(username);
-
-                if (!sender)
-                    return;
+    const avatar =
+        document.createElement(
+            "div"
+        );
 
 
-                const div =
-                    document.createElement("div");
-
-                div.className =
-                    "notification";
+    avatar.className =
+        "friend-avatar";
 
 
-                div.innerHTML = `
-
-                    <strong>
-                        ${escapeHTML(sender.username)}
-                    </strong>
-                    sent you a friend request.
-
-                    <div class="person-actions">
-
-                        <button
-                            class="small-button"
-                            onclick="acceptFriend('${escapeAttr(sender.username)}')"
-                        >
-                            Accept
-                        </button>
-
-                        <button
-                            class="small-button secondary"
-                            onclick="declineFriend('${escapeAttr(sender.username)}')"
-                        >
-                            Decline
-                        </button>
-
-                    </div>
-
-                `;
+    avatar.textContent =
+        user.username
+            .charAt(0)
+            .toUpperCase();
 
 
-                list.appendChild(div);
-
-            });
-
-    }
-
-
-    currentUser.notifications
-        .forEach(notification => {
-
-            const div =
-                document.createElement("div");
-
-            div.className =
-                "notification";
+    const info =
+        document.createElement(
+            "div"
+        );
 
 
-            div.innerHTML = `
-
-                ${escapeHTML(notification.text)}
-
-                <div class="notification-time">
-                    ${escapeHTML(notification.time)}
-                </div>
-
-            `;
+    info.className =
+        "friend-info";
 
 
-            list.appendChild(div);
+    const name =
+        document.createElement(
+            "div"
+        );
 
-        });
+
+    name.className =
+        "friend-name";
 
 
-    if (
-        list.children.length === 0
-    ) {
+    name.textContent =
+        user.username;
 
-        list.innerHTML =
-            `<div class="notification">
-                No notifications.
-            </div>`;
+
+    if (user.verified) {
+
+        const badge =
+            document.createElement(
+                "span"
+            );
+
+        badge.className =
+            "verified-badge";
+
+        badge.textContent =
+            "✓";
+
+        name.appendChild(
+            badge
+        );
 
     }
 
 
-    currentUser.notifications = [];
+    const status =
+        document.createElement(
+            "div"
+        );
 
-    saveUsers();
 
-    updateNotificationCount();
+    status.className =
+        "friend-status";
+
+
+    if (
+        user.owner
+    ) {
+
+        status.textContent =
+            "Dynablox Owner";
+
+    }
+
+    else if (
+        user.moderator
+    ) {
+
+        status.textContent =
+            "Moderator";
+
+    }
+
+    else {
+
+        status.textContent =
+            "Dynablox Player";
+
+    }
+
+
+    info.appendChild(name);
+    info.appendChild(status);
+
+
+    const actions =
+        document.createElement(
+            "div"
+        );
+
+
+    actions.className =
+        "friend-actions";
+
+
+    /*
+       FRIEND
+    */
+
+    if (
+        relationship === "friend"
+    ) {
+
+        const label =
+            document.createElement(
+                "button"
+            );
+
+        label.className =
+            "friend-button secondary";
+
+        label.textContent =
+            "Friends";
+
+        label.disabled =
+            true;
+
+        actions.appendChild(
+            label
+        );
+
+    }
+
+
+    /*
+       FOLLOWING
+    */
+
+    if (
+        relationship === "following"
+    ) {
+
+        const followButton =
+            document.createElement(
+                "button"
+            );
+
+        followButton.className =
+            "friend-button secondary";
+
+        followButton.textContent =
+            "Following";
+
+        followButton.onclick =
+            function() {
+
+                unfollowUser(
+                    user.username
+                );
+
+            };
+
+        actions.appendChild(
+            followButton
+        );
+
+    }
+
+
+    /*
+       FOLLOW
+    */
+
+    if (
+        relationship === "none"
+    ) {
+
+        const followButton =
+            document.createElement(
+                "button"
+            );
+
+        followButton.className =
+            "friend-button secondary";
+
+        followButton.textContent =
+            "Follow";
+
+        followButton.onclick =
+            function() {
+
+                followUser(
+                    user.username
+                );
+
+            };
+
+        actions.appendChild(
+            followButton
+        );
+
+
+        const friendButton =
+            document.createElement(
+                "button"
+            );
+
+        friendButton.className =
+            "friend-button";
+
+        friendButton.textContent =
+            "Add Friend";
+
+        friendButton.onclick =
+            function() {
+
+                sendFriendRequest(
+                    user.username
+                );
+
+            };
+
+        actions.appendChild(
+            friendButton
+        );
+
+    }
+
+
+    /*
+       REQUEST SENT
+    */
+
+    if (
+        relationship === "requested"
+    ) {
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.className =
+            "friend-button secondary";
+
+        button.textContent =
+            "Request Sent";
+
+        button.disabled =
+            true;
+
+        actions.appendChild(
+            button
+        );
+
+    }
+
+
+    /*
+       REQUEST RECEIVED
+    */
+
+    if (
+        relationship === "received"
+    ) {
+
+        const accept =
+            document.createElement(
+                "button"
+            );
+
+        accept.className =
+            "friend-button";
+
+        accept.textContent =
+            "Accept";
+
+        accept.onclick =
+            function() {
+
+                acceptFriendRequest(
+                    user.username
+                );
+
+            };
+
+
+        const decline =
+            document.createElement(
+                "button"
+            );
+
+        decline.className =
+            "friend-button secondary";
+
+        decline.textContent =
+            "Decline";
+
+        decline.onclick =
+            function() {
+
+                declineFriendRequest(
+                    user.username
+                );
+
+            };
+
+
+        actions.appendChild(
+            accept
+        );
+
+        actions.appendChild(
+            decline
+        );
+
+    }
+
+
+    card.appendChild(
+        avatar
+    );
+
+    card.appendChild(
+        info
+    );
+
+    card.appendChild(
+        actions
+    );
+
+
+    container.appendChild(
+        card
+    );
 
 }
 
 
-/* =================================================
-ADMIN
-================================================= */
+/* =========================================================
+   RELATIONSHIP
+========================================================= */
 
-function openAdmin() {
+function getRelationship(
+    current,
+    other
+) {
 
     if (
-        !currentUser.owner &&
-        !currentUser.moderator
+        current.friends.includes(
+            other.username
+        )
+    ) {
+
+        return "friend";
+
+    }
+
+
+    if (
+        current.friendRequests.includes(
+            other.username
+        )
+    ) {
+
+        return "received";
+
+    }
+
+
+    if (
+        other.friendRequests.includes(
+            current.username
+        )
+    ) {
+
+        return "requested";
+
+    }
+
+
+    if (
+        current.following.includes(
+            other.username
+        )
+    ) {
+
+        return "following";
+
+    }
+
+
+    return "none";
+
+}
+
+
+/* =========================================================
+   FRIEND REQUEST
+========================================================= */
+
+function sendFriendRequest(
+    username
+) {
+
+    const current =
+        getCurrentUser();
+
+
+    const target =
+        getUser(username);
+
+
+    if (
+        !current ||
+        !target
+    ) {
+        return;
+    }
+
+
+    if (
+        current.username.toLowerCase()
+        === target.username.toLowerCase()
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        current.friends.includes(
+            target.username
+        )
     ) {
 
         alert(
-            "You don't have permission."
+            "You are already friends."
         );
 
         return;
@@ -2626,407 +3245,472 @@ function openAdmin() {
     }
 
 
-    hidePages();
+    if (
+        target.friendRequests.includes(
+            current.username
+        )
+    ) {
 
-    document
-        .getElementById("adminContent")
-        .classList.remove("hidden");
+        alert(
+            "Friend request already sent."
+        );
 
-    renderAdmin();
+        return;
+
+    }
+
+
+    target.friendRequests.push(
+        current.username
+    );
+
+
+    saveUsers();
+
+    renderFriendsPage();
+
+    updateNotificationCount();
 
 }
 
 
-/* =================================================
-ADMIN RENDER
-================================================= */
+/* =========================================================
+   ACCEPT FRIEND
+========================================================= */
 
-function renderAdmin() {
+function acceptFriendRequest(
+    username
+) {
+
+    const current =
+        getCurrentUser();
+
+
+    const other =
+        getUser(username);
+
+
+    if (
+        !current ||
+        !other
+    ) {
+        return;
+    }
+
+
+    current.friendRequests =
+        current.friendRequests.filter(
+            name =>
+                name.toLowerCase()
+                !== other.username.toLowerCase()
+        );
+
+
+    if (
+        !current.friends.includes(
+            other.username
+        )
+    ) {
+
+        current.friends.push(
+            other.username
+        );
+
+    }
+
+
+    if (
+        !other.friends.includes(
+            current.username
+        )
+    ) {
+
+        other.friends.push(
+            current.username
+        );
+
+    }
+
+
+    saveUsers();
+
+    renderFriendsPage();
+
+    updateNotificationCount();
+
+}
+
+
+/* =========================================================
+   DECLINE FRIEND
+========================================================= */
+
+function declineFriendRequest(
+    username
+) {
+
+    const current =
+        getCurrentUser();
+
+
+    if (!current) {
+        return;
+    }
+
+
+    current.friendRequests =
+        current.friendRequests.filter(
+            name =>
+                name.toLowerCase()
+                !== username.toLowerCase()
+        );
+
+
+    saveUsers();
+
+    renderFriendsPage();
+
+    updateNotificationCount();
+
+}
+
+
+/* =========================================================
+   FOLLOW
+========================================================= */
+
+function followUser(
+    username
+) {
+
+    const current =
+        getCurrentUser();
+
+
+    const target =
+        getUser(username);
+
+
+    if (
+        !current ||
+        !target
+    ) {
+        return;
+    }
+
+
+    if (
+        !current.following.includes(
+            target.username
+        )
+    ) {
+
+        current.following.push(
+            target.username
+        );
+
+    }
+
+
+    if (
+        !target.followers.includes(
+            current.username
+        )
+    ) {
+
+        target.followers.push(
+            current.username
+        );
+
+    }
+
+
+    saveUsers();
+
+    renderFriendsPage();
+
+}
+
+
+/* =========================================================
+   UNFOLLOW
+========================================================= */
+
+function unfollowUser(
+    username
+) {
+
+    const current =
+        getCurrentUser();
+
+
+    const target =
+        getUser(username);
+
+
+    if (
+        !current ||
+        !target
+    ) {
+        return;
+    }
+
+
+    current.following =
+        current.following.filter(
+            name =>
+                name.toLowerCase()
+                !== target.username.toLowerCase()
+        );
+
+
+    target.followers =
+        target.followers.filter(
+            name =>
+                name.toLowerCase()
+                !== current.username.toLowerCase()
+        );
+
+
+    saveUsers();
+
+    renderFriendsPage();
+
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+function showNotifications() {
+
+    const current =
+        getCurrentUser();
+
+
+    if (!current) {
+        return;
+    }
+
+
+    hideAllPages();
+
+
+    document
+        .getElementById(
+            "notificationsContent"
+        )
+        .classList.remove("hidden");
+
+
+    renderNotifications();
+
+}
+
+
+/* =========================================================
+   RENDER NOTIFICATIONS
+========================================================= */
+
+function renderNotifications() {
+
+    const current =
+        getCurrentUser();
+
 
     const list =
         document.getElementById(
-            "adminUsers"
+            "notificationsList"
         );
-
-    const search =
-        document
-            .getElementById(
-                "adminPlayerSearch"
-            )
-            .value
-            .trim()
-            .toLowerCase();
 
 
     list.innerHTML = "";
 
 
-    users.forEach((user,index) => {
+    if (
+        current.friendRequests.length === 0
+    ) {
 
-        if (
-            user.owner &&
-            !currentUser.owner
-        )
-            return;
+        const empty =
+            document.createElement(
+                "div"
+            );
 
+        empty.className =
+            "notification-card";
 
-        if (
-            search &&
-            !user.username
-                .toLowerCase()
-                .includes(search)
-        )
-            return;
+        empty.textContent =
+            "You have no new notifications.";
 
+        list.appendChild(
+            empty
+        );
 
-        const div =
-            document.createElement("div");
+        return;
 
-        div.className =
-            "user";
-
-
-        let status =
-            "Active";
+    }
 
 
-        if (
-            isUserBanned(user)
-        ) {
+    current.friendRequests.forEach(
+        username => {
 
-            if (
-                user.banExpires === null
-            ) {
+            const card =
+                document.createElement(
+                    "div"
+                );
 
-                status =
-                    "Permanently terminated";
+            card.className =
+                "notification-card";
 
-            } else {
 
-                status =
-                    "Suspended for " +
-                    user.banDuration +
-                    " " +
-                    user.banUnit +
-                    (
-                        user.banDuration === 1
-                        ? ""
-                        : "s"
+            const text =
+                document.createElement(
+                    "p"
+                );
+
+            text.textContent =
+                username +
+                " sent you a friend request.";
+
+
+            const actions =
+                document.createElement(
+                    "div"
+                );
+
+            actions.className =
+                "notification-actions";
+
+
+            const accept =
+                document.createElement(
+                    "button"
+                );
+
+            accept.className =
+                "accept-button";
+
+            accept.textContent =
+                "Accept";
+
+            accept.onclick =
+                function() {
+
+                    acceptFriendRequest(
+                        username
                     );
 
-            }
-
-        }
-
-
-        div.innerHTML = `
-
-            <strong>
-                ${escapeHTML(user.username)}
-                ${getVerifiedHTML(user)}
-            </strong>
-
-            <br>
-
-            Status:
-            ${escapeHTML(status)}
-
-        `;
-
-
-        if (
-            currentUser.owner &&
-            !user.owner
-        ) {
-
-            const modButton =
-                document.createElement("button");
-
-            modButton.className =
-                "admin-button mod-button";
-
-
-            modButton.textContent =
-                user.moderator
-                ? "Remove Moderator"
-                : "Make Moderator";
-
-
-            modButton.onclick =
-                function() {
-
-                    user.moderator =
-                        !user.moderator;
-
-                    saveUsers();
-
-                    renderAdmin();
+                    renderNotifications();
 
                 };
 
 
-            div.appendChild(
-                modButton
+            const decline =
+                document.createElement(
+                    "button"
+                );
+
+            decline.className =
+                "decline-button";
+
+            decline.textContent =
+                "Decline";
+
+            decline.onclick =
+                function() {
+
+                    declineFriendRequest(
+                        username
+                    );
+
+                    renderNotifications();
+
+                };
+
+
+            actions.appendChild(
+                accept
+            );
+
+            actions.appendChild(
+                decline
+            );
+
+
+            card.appendChild(
+                text
+            );
+
+            card.appendChild(
+                actions
+            );
+
+
+            list.appendChild(
+                card
             );
 
         }
-
-
-        if (
-            user.banned
-        ) {
-
-            const unban =
-                document.createElement("button");
-
-            unban.className =
-                "admin-button unban-button";
-
-            unban.textContent =
-                "Remove Moderation Action";
-
-
-            unban.onclick =
-                function() {
-
-                    user.banned =
-                        false;
-
-                    user.banReason =
-                        "";
-
-                    user.banDuration =
-                        null;
-
-                    user.banUnit =
-                        null;
-
-                    user.banExpires =
-                        null;
-
-                    saveUsers();
-
-                    renderAdmin();
-
-                };
-
-
-            div.appendChild(
-                unban
-            );
-
-        } else if (
-            !user.owner
-        ) {
-
-            const controls =
-                document.createElement("div");
-
-            controls.className =
-                "ban-controls";
-
-
-            controls.innerHTML = `
-
-                <label>
-                    <strong>
-                        Suspension duration
-                    </strong>
-                </label>
-
-                <input
-                    class="ban-number"
-                    type="number"
-                    min="1"
-                    step="1"
-                    placeholder="Length"
-                >
-
-                <select class="ban-unit">
-
-                    <option value="seconds">
-                        Seconds
-                    </option>
-
-                    <option value="minutes">
-                        Minutes
-                    </option>
-
-                    <option value="hours">
-                        Hours
-                    </option>
-
-                    <option value="days">
-                        Days
-                    </option>
-
-                    <option value="weeks">
-                        Weeks
-                    </option>
-
-                    <option value="months">
-                        Months
-                    </option>
-
-                    <option value="permanent">
-                        Permanent
-                    </option>
-
-                </select>
-
-                <label>
-                    <strong>
-                        Reason
-                    </strong>
-                </label>
-
-                <textarea
-                    class="ban-reason-input"
-                    placeholder="Enter the reason..."
-                ></textarea>
-
-                <button class="admin-button ban-button">
-                    Suspend Account
-                </button>
-            `;
-
-
-            const number =
-                controls.querySelector(
-                    ".ban-number"
-                );
-
-            const unit =
-                controls.querySelector(
-                    ".ban-unit"
-                );
-
-            const reason =
-                controls.querySelector(
-                    ".ban-reason-input"
-                );
-
-            const button =
-                controls.querySelector(
-                    ".ban-button"
-                );
-
-
-            unit.onchange =
-                function() {
-
-                    number.disabled =
-                        unit.value === "permanent";
-
-                    if (number.disabled)
-                        number.value = "";
-
-                };
-
-
-            button.onclick =
-                function() {
-
-                    const selectedUnit =
-                        unit.value;
-
-                    const text =
-                        reason.value.trim();
-
-
-                    if (!text) {
-
-                        alert(
-                            "Please enter a reason."
-                        );
-
-                        return;
-
-                    }
-
-
-                    if (
-                        selectedUnit !== "permanent"
-                        &&
-                        (
-                            !number.value ||
-                            Number(number.value) < 1 ||
-                            !Number.isInteger(
-                                Number(number.value)
-                            )
-                        )
-                    ) {
-
-                        alert(
-                            "Enter a whole number."
-                        );
-
-                        return;
-
-                    }
-
-
-                    user.banned =
-                        true;
-
-                    user.banReason =
-                        text;
-
-                    user.banUnit =
-                        selectedUnit;
-
-
-                    if (
-                        selectedUnit === "permanent"
-                    ) {
-
-                        user.banDuration =
-                            null;
-
-                        user.banExpires =
-                            null;
-
-                    } else {
-
-                        const amount =
-                            Number(number.value);
-
-                        user.banDuration =
-                            amount;
-
-                        user.banExpires =
-                            calculateBanExpiry(
-                                amount,
-                                selectedUnit
-                            );
-
-                    }
-
-
-                    saveUsers();
-
-                    renderAdmin();
-
-                };
-
-
-            div.appendChild(
-                controls
-            );
-
-        }
-
-
-        list.appendChild(div);
-
-    });
+    );
 
 }
 
 
-/* =================================================
-SEARCH GAMES
-================================================= */
+/* =========================================================
+   NOTIFICATION COUNT
+========================================================= */
+
+function updateNotificationCount() {
+
+    const current =
+        getCurrentUser();
+
+
+    const badge =
+        document.getElementById(
+            "notificationCount"
+        );
+
+
+    if (
+        !current ||
+        !badge
+    ) {
+        return;
+    }
+
+
+    const count =
+        current.friendRequests.length;
+
+
+    badge.textContent =
+        count;
+
+
+    if (count > 0) {
+
+        badge.classList.remove(
+            "hidden"
+        );
+
+    }
+
+    else {
+
+        badge.classList.add(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SEARCH GAMES
+========================================================= */
 
 function searchGames() {
 
@@ -3037,26 +3721,34 @@ function searchGames() {
             .toLowerCase();
 
 
-    document
-        .querySelectorAll(".game-card")
-        .forEach(card => {
+    const cards =
+        document.querySelectorAll(
+            ".game-card"
+        );
+
+
+    cards.forEach(
+        card => {
 
             const name =
-                card.dataset.name.toLowerCase();
+                card.dataset.name
+                    .toLowerCase();
+
 
             card.style.display =
                 name.includes(search)
                 ? ""
                 : "none";
 
-        });
+        }
+    );
 
 }
 
 
-/* =================================================
-PLAY
-================================================= */
+/* =========================================================
+   PLAY GAME
+========================================================= */
 
 function playGame(name) {
 
@@ -3069,32 +3761,729 @@ function playGame(name) {
 }
 
 
-/* =================================================
-LOGOUT
-================================================= */
+/* =========================================================
+   ADMIN
+========================================================= */
+
+function openAdmin() {
+
+    const current =
+        getCurrentUser();
+
+
+    if (
+        !current ||
+        (
+            !current.owner &&
+            !current.moderator
+        )
+    ) {
+
+        alert(
+            "You don't have permission."
+        );
+
+        return;
+
+    }
+
+
+    hideAllPages();
+
+
+    document
+        .getElementById(
+            "adminContent"
+        )
+        .classList.remove("hidden");
+
+
+    renderAdmin();
+
+}
+
+
+/* =========================================================
+   ADMIN USER LIST
+========================================================= */
+
+function renderAdmin() {
+
+    const current =
+        getCurrentUser();
+
+
+    if (
+        !current ||
+        (
+            !current.owner &&
+            !current.moderator
+        )
+    ) {
+        return;
+    }
+
+
+    const list =
+        document.getElementById(
+            "adminUsers"
+        );
+
+
+    const searchBox =
+        document.getElementById(
+            "adminPlayerSearch"
+        );
+
+
+    const search =
+        searchBox
+            ? searchBox.value
+                .trim()
+                .toLowerCase()
+            : "";
+
+
+    list.innerHTML = "";
+
+
+    users.forEach(
+        (user, index) => {
+
+            /*
+               Moderators cannot moderate the owner.
+            */
+
+            if (
+                user.owner &&
+                !current.owner
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                search &&
+                !user.username
+                    .toLowerCase()
+                    .includes(search)
+            ) {
+
+                return;
+
+            }
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "user";
+
+
+            const heading =
+                document.createElement(
+                    "div"
+                );
+
+
+            heading.innerHTML =
+                "<strong>" +
+                escapeHTML(
+                    user.username
+                ) +
+                "</strong>";
+
+
+            if (user.verified) {
+
+                const badge =
+                    document.createElement(
+                        "span"
+                    );
+
+                badge.className =
+                    "verified-badge";
+
+                badge.textContent =
+                    "✓";
+
+                heading.appendChild(
+                    badge
+                );
+
+            }
+
+
+            div.appendChild(
+                heading
+            );
+
+
+            if (user.owner) {
+
+                const ownerText =
+                    document.createElement(
+                        "div"
+                    );
+
+                ownerText.textContent =
+                    "Owner";
+
+                div.appendChild(
+                    ownerText
+                );
+
+            }
+
+            else if (
+                user.moderator
+            ) {
+
+                const modText =
+                    document.createElement(
+                        "div"
+                    );
+
+                modText.className =
+                    "moderator-label";
+
+                modText.textContent =
+                    "Moderator";
+
+                div.appendChild(
+                    modText
+                );
+
+            }
+
+
+            const status =
+                document.createElement(
+                    "div"
+                );
+
+
+            if (
+                user.banned
+            ) {
+
+                if (
+                    user.banExpires === null
+                ) {
+
+                    status.textContent =
+                        "Account Terminated";
+
+                }
+
+                else {
+
+                    status.textContent =
+                        "Account Suspended for " +
+                        user.banDuration +
+                        " " +
+                        user.banUnit +
+                        (
+                            user.banDuration === 1
+                            ? ""
+                            : "s"
+                        );
+
+                }
+
+            }
+
+            else if (
+                user.expiredBanPending
+            ) {
+
+                status.textContent =
+                    "Suspension expired — awaiting reactivation.";
+
+            }
+
+            else {
+
+                status.textContent =
+                    "Active";
+
+            }
+
+
+            div.appendChild(
+                document.createElement("br")
+            );
+
+
+            div.appendChild(
+                status
+            );
+
+
+            /*
+               UNBAN
+            */
+
+            if (
+                user.banned &&
+                !user.owner
+            ) {
+
+                const unbanButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                unbanButton.className =
+                    "admin-button unban-button";
+
+
+                unbanButton.textContent =
+                    "Remove Moderation";
+
+
+                unbanButton.onclick =
+                    function() {
+
+                        users[index].banned =
+                            false;
+
+                        users[index].banReason =
+                            "";
+
+                        users[index].banDuration =
+                            null;
+
+                        users[index].banUnit =
+                            null;
+
+                        users[index].banExpires =
+                            null;
+
+                        users[index].expiredBanPending =
+                            false;
+
+
+                        saveUsers();
+
+                        renderAdmin();
+
+                    };
+
+
+                div.appendChild(
+                    unbanButton
+                );
+
+            }
+
+
+            /*
+               BAN CONTROLS
+            */
+
+            if (
+                !user.owner &&
+                !user.banned
+            ) {
+
+                const controls =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                controls.className =
+                    "ban-controls";
+
+
+                controls.innerHTML = `
+
+                    <label>
+                        <strong>
+                            Moderation duration
+                        </strong>
+                    </label>
+
+                    <input
+                        class="ban-number"
+                        type="number"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="Length"
+                    >
+
+                    <select class="ban-unit">
+
+                        <option value="seconds">
+                            Seconds
+                        </option>
+
+                        <option value="minutes">
+                            Minutes
+                        </option>
+
+                        <option value="hours">
+                            Hours
+                        </option>
+
+                        <option value="days">
+                            Days
+                        </option>
+
+                        <option value="weeks">
+                            Weeks
+                        </option>
+
+                        <option value="months">
+                            Months
+                        </option>
+
+                        <option value="permanent">
+                            Permanent
+                        </option>
+
+                    </select>
+
+                    <label>
+                        <strong>
+                            Moderation reason
+                        </strong>
+                    </label>
+
+                    <textarea
+                        class="ban-reason-input"
+                        placeholder="Enter the reason..."
+                    ></textarea>
+
+                    <button
+                        class="admin-button ban-button"
+                    >
+                        Moderate User
+                    </button>
+
+                `;
+
+
+                const numberInput =
+                    controls.querySelector(
+                        ".ban-number"
+                    );
+
+
+                const unitSelect =
+                    controls.querySelector(
+                        ".ban-unit"
+                    );
+
+
+                const reasonInput =
+                    controls.querySelector(
+                        ".ban-reason-input"
+                    );
+
+
+                const banButton =
+                    controls.querySelector(
+                        ".ban-button"
+                    );
+
+
+                unitSelect.onchange =
+                    function() {
+
+                        if (
+                            unitSelect.value
+                            === "permanent"
+                        ) {
+
+                            numberInput.value =
+                                "";
+
+                            numberInput.disabled =
+                                true;
+
+                        }
+
+                        else {
+
+                            numberInput.disabled =
+                                false;
+
+                        }
+
+                    };
+
+
+                banButton.onclick =
+                    function() {
+
+                        const unit =
+                            unitSelect.value;
+
+
+                        const reason =
+                            reasonInput.value
+                                .trim();
+
+
+                        if (!reason) {
+
+                            alert(
+                                "Please enter a moderation reason."
+                            );
+
+                            return;
+
+                        }
+
+
+                        if (
+                            unit !== "permanent"
+                            &&
+                            (
+                                !numberInput.value ||
+                                Number(
+                                    numberInput.value
+                                ) < 1 ||
+                                !Number.isInteger(
+                                    Number(
+                                        numberInput.value
+                                    )
+                                )
+                            )
+                        ) {
+
+                            alert(
+                                "Enter a whole number for the duration."
+                            );
+
+                            return;
+
+                        }
+
+
+                        /*
+                           Apply moderation.
+                        */
+
+                        users[index].banned =
+                            true;
+
+
+                        users[index].expiredBanPending =
+                            false;
+
+
+                        users[index].banReason =
+                            reason;
+
+
+                        users[index].banUnit =
+                            unit;
+
+
+                        if (
+                            unit === "permanent"
+                        ) {
+
+                            users[index].banDuration =
+                                null;
+
+                            users[index].banExpires =
+                                null;
+
+                        }
+
+                        else {
+
+                            const amount =
+                                Number(
+                                    numberInput.value
+                                );
+
+
+                            users[index].banDuration =
+                                amount;
+
+
+                            users[index].banExpires =
+                                calculateBanExpiry(
+                                    amount,
+                                    unit
+                                );
+
+                        }
+
+
+                        saveUsers();
+
+
+                        /*
+                           If the moderator just moderated
+                           themselves, immediately log them
+                           out and show the moderation screen.
+                        */
+
+                        if (
+                            users[index].username
+                                .toLowerCase()
+                            === current.username
+                                .toLowerCase()
+                        ) {
+
+                            sessionStorage.setItem(
+                                "reactivationUser",
+                                users[index].username
+                            );
+
+
+                            showModerationScreen(
+                                users[index]
+                            );
+
+
+                            return;
+
+                        }
+
+
+                        renderAdmin();
+
+                    };
+
+
+                div.appendChild(
+                    controls
+                );
+
+            }
+
+
+            /*
+               OWNER ONLY:
+               MAKE / REMOVE MODERATOR
+            */
+
+            if (
+                current.owner &&
+                !user.owner
+            ) {
+
+                const modButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                modButton.className =
+                    "admin-button mod-button";
+
+
+                modButton.textContent =
+                    user.moderator
+                    ? "Remove Moderator"
+                    : "Make Moderator";
+
+
+                modButton.onclick =
+                    function() {
+
+                        users[index].moderator =
+                            !users[index].moderator;
+
+
+                        saveUsers();
+
+                        renderAdmin();
+
+                    };
+
+
+                div.appendChild(
+                    modButton
+                );
+
+            }
+
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+
+    if (
+        list.children.length === 0 &&
+        search
+    ) {
+
+        const noResults =
+            document.createElement(
+                "div"
+            );
+
+
+        noResults.className =
+            "user";
+
+
+        noResults.textContent =
+            "No players found matching " +
+            search +
+            ".";
+
+
+        list.appendChild(
+            noResults
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 function logout() {
 
     localStorage.removeItem(
-        "dynoblocks_currentUser"
+        "currentUser"
     );
 
-    currentUser = null;
+
+    sessionStorage.removeItem(
+        "reactivationUser"
+    );
+
 
     location.reload();
 
 }
 
 
-/* =================================================
-AUTH SWITCH
-================================================= */
+/* =========================================================
+   LOGIN / REGISTER SWITCH
+========================================================= */
 
 function showRegister() {
 
     document
         .getElementById("loginForm")
         .classList.add("hidden");
+
 
     document
         .getElementById("registerForm")
@@ -3109,6 +4498,7 @@ function showLogin() {
         .getElementById("registerForm")
         .classList.add("hidden");
 
+
     document
         .getElementById("loginForm")
         .classList.remove("hidden");
@@ -3116,90 +4506,152 @@ function showLogin() {
 }
 
 
-/* =================================================
-FIND USER
-================================================= */
-
-function findUser(username) {
-
-    return users.find(
-        u =>
-            u.username.toLowerCase()
-            === username.toLowerCase()
-    ) || null;
-
-}
-
-
-/* =================================================
-ESCAPE HTML
-================================================= */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
 function escapeHTML(text) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     div.textContent =
         text;
+
 
     return div.innerHTML;
 
 }
 
 
-function escapeAttr(text) {
+/* =========================================================
+   AUTO LOGIN
+========================================================= */
 
-    return text
-        .replace(/\\/g,"\\\\")
-        .replace(/'/g,"\\'");
+function autoLogin() {
 
-}
-
-
-/* =================================================
-AUTO LOGIN
-================================================= */
-
-const savedUsername =
-    localStorage.getItem(
-        "dynoblocks_currentUser"
-    );
+    const savedUser =
+        localStorage.getItem(
+            "currentUser"
+        );
 
 
-if (savedUsername) {
+    if (!savedUser) {
+        return;
+    }
+
 
     const user =
-        findUser(savedUsername);
+        getUser(savedUser);
 
 
-    if (user) {
-
-        currentUser =
-            user;
-
-
-        if (isUserBanned(user)) {
-
-            showBanScreen(user);
-
-        } else {
-
-            showApp();
-
-        }
-
-    } else {
+    if (!user) {
 
         localStorage.removeItem(
-            "dynoblocks_currentUser"
+            "currentUser"
         );
+
+        return;
 
     }
 
+
+    /*
+       PERMANENTLY MODERATED
+    */
+
+    if (
+        user.banned &&
+        user.banExpires === null
+    ) {
+
+        sessionStorage.setItem(
+            "reactivationUser",
+            user.username
+        );
+
+
+        showModerationScreen(
+            user
+        );
+
+        return;
+
+    }
+
+
+    /*
+       TEMPORARILY MODERATED
+    */
+
+    if (
+        user.banned
+    ) {
+
+        if (
+            isUserBanned(user)
+        ) {
+
+            sessionStorage.setItem(
+                "reactivationUser",
+                user.username
+            );
+
+
+            showModerationScreen(
+                user
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /*
+       EXPIRED TEMPORARY BAN
+    */
+
+    if (
+        user.expiredBanPending
+    ) {
+
+        sessionStorage.setItem(
+            "reactivationUser",
+            user.username
+        );
+
+
+        showReactivationScreen(
+            user
+        );
+
+        return;
+
+    }
+
+
+    /*
+       NORMAL LOGIN
+    */
+
+    showApp();
+
 }
+
+
+/* =========================================================
+   START
+========================================================= */
+
+autoLogin();
 
 </script>
 
 </body>
+
 </html>
