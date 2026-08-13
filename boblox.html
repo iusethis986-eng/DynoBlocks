@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Boblox</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #191919;
+}
+
+
+/* =========================
+   LOGIN / REGISTER
+========================= */
+
+.auth-container {
+    width: 90%;
+    max-width: 420px;
+    margin: 70px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.12);
+}
+
+.auth-container h1 {
+    text-align: center;
+}
+
+.auth-container h2 {
+    text-align: center;
+    font-size: 22px;
+}
+
+input {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid #aaa;
+    border-radius: 7px;
+    background: white !important;
+    color: black !important;
+    -webkit-text-fill-color: black !important;
+    font-size: 16px;
+}
+
+input::placeholder {
+    color: #777 !important;
+    -webkit-text-fill-color: #777 !important;
+}
+
+.auth-button {
+    width: 100%;
+    height: 48px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 7px;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.switch-text {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+}
+
+.switch-button {
+    border: none;
+    background: transparent;
+    color: #1877f2;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.message {
+    text-align: center;
+    min-height: 20px;
+    margin-top: 12px;
+}
+
+
+/* =========================
+   BAN SCREEN
+========================= */
+
+.ban-screen {
+    min-height: 100vh;
+
+    background: #f5f5f5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+}
+
+.ban-box {
+    width: 100%;
+    max-width: 650px;
+
+    background: white;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 40px;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,.10);
+}
+
+.ban-title {
+    font-size: 30px;
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.ban-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.ban-reason {
+    background: #f5f5f5;
+
+    border-radius: 7px;
+
+    padding: 15px;
+
+    margin: 20px 0;
+}
+
+.ban-reason-title {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.ban-appeal {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #ddd;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+.ban-permanent {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+
+/* =========================
+   MAIN APP
+========================= */
+
+.app {
+    min-height: 100vh;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+    height: 60px;
+
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 0 20px;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 20;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.search {
+    width: 300px;
+
+    height: 38px;
+
+    margin: 0;
+
+    background: #f1f1f1 !important;
+
+    border: none;
+
+    font-size: 14px;
+}
+
+.top-right {
+    margin-left: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.coins {
+    font-weight: bold;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+
+    top: 60px;
+    left: 0;
+    bottom: 0;
+
+    width: 220px;
+
+    background: white;
+
+    border-right: 1px solid #ddd;
+
+    padding: 20px 12px;
+}
+
+.side-button {
+    width: 100%;
+
+    height: 45px;
+
+    margin: 3px 0;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #333;
+
+    text-align: left;
+
+    padding: 0 15px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.side-button:hover {
+    background: #eee;
+}
+
+.side-button.active {
+    background: #e8e8e8;
+    font-weight: bold;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.content {
+    margin-left: 220px;
+
+    padding: 90px 35px 40px;
+
+    max-width: 1400px;
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 35px;
+}
+
+.avatar {
+    width: 72px;
+    height: 72px;
+
+    border-radius: 50%;
+
+    background: #ddd;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 32px;
+}
+
+.profile h1 {
+    margin: 0;
+
+    font-size: 26px;
+}
+
+.profile p {
+    margin: 6px 0;
+
+    color: #777;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    margin-bottom: 40px;
+}
+
+.section-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    margin: 0;
+
+    font-size: 21px;
+}
+
+.see-all {
+    border: none;
+
+    background: transparent;
+
+    color: #555;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   GAME GRID
+========================= */
+
+.game-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
+    gap: 20px;
+}
+
+.game-card {
+    background: white;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition: transform .15s;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+.game-card:hover {
+    transform: translateY(-3px);
+}
+
+.thumbnail {
+    width: 100%;
+
+    aspect-ratio: 16 / 10;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 45px;
+
+    color: white;
+}
+
+.blue {
+    background: linear-gradient(
+        135deg,
+        #3275ff,
+        #754cff
+    );
+}
+
+.green {
+    background: linear-gradient(
+        135deg,
+        #32b36b,
+        #1b8060
+    );
+}
+
+.orange {
+    background: linear-gradient(
+        135deg,
+        #ff9f43,
+        #ee5253
+    );
+}
+
+.purple {
+    background: linear-gradient(
+        135deg,
+        #9b59ff,
+        #e056fd
+    );
+}
+
+.game-info {
+    padding: 12px;
+}
+
+.game-name {
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.players {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 6px;
+}
+
+
+/* =========================
+   ADMIN
+========================= */
+
+.admin {
+    max-width: 750px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+}
+
+.admin-search {
+    width: 100%;
+
+    margin: 15px 0 20px;
+
+    background: #f1f1f1 !important;
+
+    border: 1px solid #ddd;
+
+    height: 45px;
+}
+
+.user {
+    background: #f1f1f1;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin: 10px 0;
+}
+
+.admin-button {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #222;
+
+    color: white;
+
+    margin-top: 8px;
+
+    cursor: pointer;
+}
+
+.ban-button {
+    background: #e53935;
+}
+
+.unban-button {
+    background: #333;
+}
+
+.ban-controls {
+    margin-top: 12px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #ddd;
+}
+
+.ban-controls label {
+    display: block;
+
+    margin-top: 10px;
+
+    margin-bottom: 5px;
+}
+
+.ban-controls input[type="number"] {
+    width: 45%;
+
+    display: inline-block;
+
+    margin: 0;
+
+    height: 42px;
+}
+
+.ban-controls select {
+    width: 50%;
+
+    height: 42px;
+
+    padding: 8px;
+
+    border: 1px solid #aaa;
+
+    border-radius: 7px;
+
+    background: white;
+
+    font-size: 15px;
+}
+
+.ban-controls textarea {
+    width: 100%;
+
+    min-height: 80px;
+
+    padding: 10px;
+
+    border: 1px solid #aaa;
+
+    border-radius: 7px;
+
+    resize: vertical;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 70px;
+
+        padding: 15px 8px;
+    }
+
+    .side-button {
+        font-size: 0;
+
+        text-align: center;
+
+        padding: 0;
+    }
+
+    .side-button:first-letter {
+        font-size: 20px;
+    }
+
+    .content {
+        margin-left: 70px;
+
+        padding: 85px 15px 30px;
+    }
+
+    .topbar {
+        padding: 0 10px;
+
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .search {
+        width: auto;
+
+        flex: 1;
+    }
+
+    .top-right {
+        display: none;
+    }
+
+    .game-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .ban-box {
+        padding: 25px;
+    }
+
+}
+
+
+/* =========================
+   EXTRA SMALL
+========================= */
+
+@media (max-width: 420px) {
+
+    .profile h1 {
+        font-size: 21px;
+    }
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .game-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- LOGIN / REGISTER -->
+<!-- ================================================= -->
+
+<div
+    id="authScreen"
+    class="auth-container"
+>
+
+    <div id="loginForm">
+
+        <h1>🎮 My Game</h1>
+
+        <h2>Login</h2>
+
+        <input
+            id="loginUsername"
+            type="text"
+            placeholder="Username"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
+        >
+
+        <input
+            id="loginPassword"
+            type="password"
+            placeholder="Password"
+        >
+
+        <button
+            class="auth-button"
+            onclick="login()"
+        >
+            Login
+        </button>
+
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
+
+        <p class="switch-text">
+
+            Don't have an account?
+
+            <button
+                class="switch-button"
+                onclick="showRegister()"
+            >
+                Create one
+            </button>
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="registerForm"
+        class="hidden"
+    >
+
+        <h1>🎮 My Game</h1>
+
+        <h2>Create Account</h2>
+
+        <input
+            id="registerUsername"
+            type="text"
+            placeholder="Username"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
+        >
+
+        <input
+            id="registerPassword"
+            type="password"
+            placeholder="Password"
+        >
+
+        <button
+            class="auth-button"
+            onclick="register()"
+        >
+            Create Account
+        </button>
+
+        <div
+            id="registerMessage"
+            class="message"
+        ></div>
+
+        <p class="switch-text">
+
+            Already have an account?
+
+            <button
+                class="switch-button"
+                onclick="showLogin()"
+            >
+                Log in
+            </button>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- BAN SCREEN -->
+<!-- ================================================= -->
+
+<div
+    id="banScreen"
+    class="ban-screen hidden"
+>
+
+    <div class="ban-box">
+
+        <div class="ban-title">
+            Account Banned
+        </div>
+
+        <div class="ban-text">
+
+            Your account has been banned.
+
+        </div>
+
+
+        <div class="ban-reason">
+
+            <div class="ban-reason-title">
+                Reason
+            </div>
+
+            <div id="banReasonText">
+                No reason provided.
+            </div>
+
+        </div>
+
+
+        <div
+            id="banDurationText"
+            class="ban-text"
+        ></div>
+
+
+        <div class="ban-appeal">
+
+            If you believe this moderation action
+            was made incorrectly, you may contact
+            the game's support team.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- APP -->
+<!-- ================================================= -->
+
+<div
+    id="app"
+    class="app hidden"
+>
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div class="logo">
+            🎮 My Game
+        </div>
+
+        <input
+            id="search"
+            class="search"
+            placeholder="Search"
+            oninput="searchGames()"
+        >
+
+        <div class="top-right">
+
+            <div class="coins">
+                🪙 <span id="coinAmount">100</span>
+            </div>
+
+            <button
+                class="side-button"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <button
+            class="side-button active"
+            onclick="showHome()"
+        >
+            🏠 &nbsp; Home
+        </button>
+
+        <button
+            class="side-button"
+            onclick="alert('Discover coming soon!')"
+        >
+            🔎 &nbsp; Discover
+        </button>
+
+        <button
+            class="side-button"
+            onclick="alert('Avatar coming soon!')"
+        >
+            👤 &nbsp; Avatar
+        </button>
+
+        <button
+            class="side-button"
+            onclick="alert('Inventory coming soon!')"
+        >
+            🎒 &nbsp; Inventory
+        </button>
+
+        <button
+            class="side-button"
+            onclick="alert('Messages coming soon!')"
+        >
+            💬 &nbsp; Messages
+        </button>
+
+        <button
+            id="adminButton"
+            class="side-button hidden"
+            onclick="openAdmin()"
+        >
+            🛡️ &nbsp; Admin
+        </button>
+
+    </aside>
+
+
+    <!-- HOME -->
+
+    <main
+        id="homeContent"
+        class="content"
+    >
+
+
+        <div class="profile">
+
+            <div class="avatar">
+                👤
+            </div>
+
+            <div>
+
+                <h1 id="welcomeName">
+                    Welcome!
+                </h1>
+
+                <p>
+                    What will you play today?
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTINUE -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2>
+                    Continue
+                </h2>
+
+                <button
+                    class="see-all"
+                    onclick="alert('More games coming soon!')"
+                >
+                    See All
+                </button>
+
+            </div>
+
+
+            <div class="game-grid">
+
+                <div
+                    class="game-card"
+                    data-name="Boat Racing"
+                    onclick="playGame('Boat Racing')"
+                >
+
+                    <div class="thumbnail blue">
+                        🚤
+                    </div>
+
+                    <div class="game-info">
+
+                        <div class="game-name">
+                            Boat Racing
+                        </div>
+
+                        <div class="players">
+                            🟢 1.2K playing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="game-card"
+                    data-name="Ice Track"
+                    onclick="playGame('Ice Track')"
+                >
+
+                    <div class="thumbnail green">
+                        🧊
+                    </div>
+
+                    <div class="game-info">
+
+                        <div class="game-name">
+                            Ice Track
+                        </div>
+
+                        <div class="players">
+                            🟢 824 playing
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECOMMENDED -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2>
+                    Recommended For You
+                </h2>
+
+                <button
+                    class="see-all"
+                    onclick="alert('More games coming soon!')"
+                >
+                    See All
+                </button>
+
+            </div>
+
+
+            <div class="game-grid">
+
+                <div
+                    class="game-card"
+                    data-name="Adventure World"
+                    onclick="playGame('Adventure World')"
+                >
+
+                    <div class="thumbnail orange">
+                        🌎
+                    </div>
+
+                    <div class="game-info">
+
+                        <div class="game-name">
+                            Adventure World
+                        </div>
+
+                        <div class="players">
+                            🟢 512 playing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="game-card"
+                    data-name="Speed Run"
+                    onclick="playGame('Speed Run')"
+                >
+
+                    <div class="thumbnail purple">
+                        ⚡
+                    </div>
+
+                    <div class="game-info">
+
+                        <div class="game-name">
+                            Speed Run
+                        </div>
+
+                        <div class="players">
+                            🟢 302 playing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="game-card"
+                    data-name="City Life"
+                    onclick="playGame('City Life')"
+                >
+
+                    <div class="thumbnail blue">
+                        🏙️
+                    </div>
+
+                    <div class="game-info">
+
+                        <div class="game-name">
+                            City Life
+                        </div>
+
+                        <div class="players">
+                            🟢 190 playing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="game-card"
+                    data-name="Mystery Island"
+                    onclick="playGame('Mystery Island')"
+                >
+
+                    <div class="thumbnail green">
+                        🏝️
+                    </div>
+
+                    <div class="game-info">
+
+                        <div class="game-name">
+                            Mystery Island
+                        </div>
+
+                        <div class="players">
+                            🟢 88 playing
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================================= -->
+    <!-- ADMIN PAGE -->
+    <!-- ================================================= -->
+
+    <main
+        id="adminContent"
+        class="content hidden"
+    >
+
+        <div class="admin">
+
+            <h1>🛡️ Admin Panel</h1>
+
+            <p>
+                Manage users and moderation.
+            </p>
+
+
+            <!-- PLAYER SEARCH -->
+
+            <input
+                id="adminPlayerSearch"
+                class="admin-search"
+                type="text"
+                placeholder="Search for a player..."
+                autocomplete="off"
+                autocapitalize="none"
+                autocorrect="off"
+                spellcheck="false"
+                oninput="renderAdmin()"
+            >
+
+
+            <div id="adminUsers"></div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+
+/* =================================================
+   DATABASE
+================================================= */
+
+let users =
+    JSON.parse(
+        localStorage.getItem("users")
+    ) || [];
+
+
+/* =================================================
+   OWNER
+================================================= */
+
+let owner =
+    users.find(
+        u =>
+            u.username.toLowerCase()
+            === "boblox"
+    );
+
+
+if (!owner) {
+
+    users.push({
+
+        username: "Boblox",
+
+        password: "owner",
+
+        owner: true,
+
+        banned: false,
+
+        verified: true,
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null
+
+    });
+
+}
+
+
+/* =================================================
+   ADMIN
+================================================= */
+
+let admin =
+    users.find(
+        u =>
+            u.username.toLowerCase()
+            === "admin"
+    );
+
+
+if (!admin) {
+
+    users.push({
+
+        username: "admin",
+
+        password: "admin123",
+
+        owner: false,
+
+        banned: false,
+
+        verified: false,
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null
+
+    });
+
+}
+
+
+saveUsers();
+
+
+/* =================================================
+   SAVE
+================================================= */
+
+function saveUsers() {
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
+
+}
+
+
+/* =================================================
+   CALCULATE BAN EXPIRY
+================================================= */
+
+function calculateBanExpiry(amount, unit) {
+
+    const now = new Date();
+
+    amount = Number(amount);
+
+
+    if (unit === "seconds") {
+
+        return new Date(
+            now.getTime() +
+            amount * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "minutes") {
+
+        return new Date(
+            now.getTime() +
+            amount * 60 * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "hours") {
+
+        return new Date(
+            now.getTime() +
+            amount * 60 * 60 * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "days") {
+
+        return new Date(
+            now.getTime() +
+            amount * 24 * 60 * 60 * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "weeks") {
+
+        return new Date(
+            now.getTime() +
+            amount * 7 * 24 * 60 * 60 * 1000
+        ).getTime();
+
+    }
+
+
+    if (unit === "months") {
+
+        const expiry =
+            new Date(now);
+
+        expiry.setMonth(
+            expiry.getMonth() + amount
+        );
+
+        return expiry.getTime();
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =================================================
+   CHECK BAN
+================================================= */
+
+function isUserBanned(user) {
+
+    if (!user.banned) {
+
+        return false;
+
+    }
+
+
+    if (user.banExpires === null) {
+
+        return true;
+
+    }
+
+
+    if (Date.now() >= user.banExpires) {
+
+        user.banned = false;
+
+        user.banReason = "";
+
+        user.banDuration = null;
+
+        user.banUnit = null;
+
+        user.banExpires = null;
+
+        saveUsers();
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =================================================
+   BAN SCREEN
+================================================= */
+
+function showBanScreen(user) {
+
+    document
+        .getElementById("authScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("app")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("banScreen")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("banReasonText")
+        .textContent =
+            user.banReason ||
+            "No reason provided.";
+
+
+    const duration =
+        document
+            .getElementById("banDurationText");
+
+
+    if (
+        user.banUnit === "permanent"
+        ||
+        user.banExpires === null
+    ) {
+
+        duration.innerHTML =
+            '<span class="ban-permanent">This ban is permanent.</span>';
+
+        return;
+
+    }
+
+
+    let unit =
+        user.banUnit;
+
+
+    if (user.banDuration !== 1) {
+
+        unit += "s";
+
+    }
+
+
+    duration.textContent =
+        "Banned for " +
+        user.banDuration +
+        " " +
+        unit;
+
+}
+
+
+/* =================================================
+   LOGIN
+================================================= */
+
+function login() {
+
+    const username =
+        document
+            .getElementById("loginUsername")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
+
+
+    const message =
+        document
+            .getElementById("loginMessage");
+
+
+    const user =
+        users.find(
+            u =>
+                u.username.toLowerCase()
+                === username.toLowerCase()
+        );
+
+
+    if (!user) {
+
+        message.textContent =
+            "Account not found.";
+
+        return;
+
+    }
+
+
+    if (user.password !== password) {
+
+        message.textContent =
+            "Incorrect password.";
+
+        return;
+
+    }
+
+
+    if (isUserBanned(user)) {
+
+        showBanScreen(user);
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "currentUser",
+        user.username
+    );
+
+
+    showApp();
+
+}
+
+
+/* =================================================
+   REGISTER
+================================================= */
+
+function register() {
+
+    const username =
+        document
+            .getElementById("registerUsername")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("registerPassword")
+            .value;
+
+
+    const message =
+        document
+            .getElementById("registerMessage");
+
+
+    if (!username || !password) {
+
+        message.textContent =
+            "Please fill in everything.";
+
+        return;
+
+    }
+
+
+    if (
+        users.some(
+            u =>
+                u.username.toLowerCase()
+                === username.toLowerCase()
+        )
+    ) {
+
+        message.textContent =
+            "That username already exists.";
+
+        return;
+
+    }
+
+
+    users.push({
+
+        username: username,
+
+        password: password,
+
+        owner: false,
+
+        banned: false,
+
+        verified: false,
+
+        banReason: "",
+
+        banDuration: null,
+
+        banUnit: null,
+
+        banExpires: null
+
+    });
+
+
+    saveUsers();
+
+
+    message.textContent =
+        "Account created!";
+
+
+    setTimeout(
+        showLogin,
+        700
+    );
+
+}
+
+
+/* =================================================
+   SHOW APP
+================================================= */
+
+function showApp() {
+
+    document
+        .getElementById("authScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("banScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+
+    showHome();
+
+}
+
+
+/* =================================================
+   HOME
+================================================= */
+
+function showHome() {
+
+    document
+        .getElementById("homeContent")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("adminContent")
+        .classList.add("hidden");
+
+
+    const username =
+        localStorage.getItem(
+            "currentUser"
+        );
+
+
+    document
+        .getElementById("welcomeName")
+        .textContent =
+            "Welcome, " +
+            username +
+            "!";
+
+
+    const user =
+        users.find(
+            u =>
+                u.username === username
+        );
+
+
+    if (
+        user &&
+        user.owner
+    ) {
+
+        document
+            .getElementById("adminButton")
+            .classList.remove("hidden");
+
+    }
+
+    else {
+
+        document
+            .getElementById("adminButton")
+            .classList.add("hidden");
+
+    }
+
+}
+
+
+/* =================================================
+   SEARCH GAMES
+================================================= */
+
+function searchGames() {
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+
+    const cards =
+        document.querySelectorAll(
+            ".game-card"
+        );
+
+
+    cards.forEach(
+        card => {
+
+            const name =
+                card.dataset.name
+                    .toLowerCase();
+
+
+            card.style.display =
+                name.includes(search)
+                ? ""
+                : "none";
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   PLAY
+================================================= */
+
+function playGame(name) {
+
+    alert(
+        "Launching " +
+        name +
+        "..."
+    );
+
+}
+
+
+/* =================================================
+   ADMIN
+================================================= */
+
+function openAdmin() {
+
+    const username =
+        localStorage.getItem(
+            "currentUser"
+        );
+
+
+    const user =
+        users.find(
+            u =>
+                u.username === username
+        );
+
+
+    if (
+        !user ||
+        !user.owner
+    ) {
+
+        alert(
+            "You don't have permission."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("homeContent")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("adminContent")
+        .classList.remove("hidden");
+
+
+    renderAdmin();
+
+}
+
+
+/* =================================================
+   ADMIN USER LIST + SEARCH
+================================================= */
+
+function renderAdmin() {
+
+    const list =
+        document
+            .getElementById(
+                "adminUsers"
+            );
+
+
+    const searchBox =
+        document
+            .getElementById(
+                "adminPlayerSearch"
+            );
+
+
+    const search =
+        searchBox
+            ? searchBox.value
+                .trim()
+                .toLowerCase()
+            : "";
+
+
+    list.innerHTML = "";
+
+
+    users.forEach(
+        (user, index) => {
+
+            /* Never show owner */
+
+            if (user.owner) {
+
+                return;
+
+            }
+
+
+            /*
+             * Partial username search.
+             *
+             * This means:
+             *
+             * bob
+             *
+             * can find:
+             *
+             * Boblox
+             * Bobby
+             * Bob123
+             *
+             */
+
+            if (
+                search &&
+                !user.username
+                    .toLowerCase()
+                    .includes(search)
+            ) {
+
+                return;
+
+            }
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "user";
+
+
+            let status;
+
+
+            if (
+                isUserBanned(user)
+            ) {
+
+                if (
+                    user.banExpires === null
+                ) {
+
+                    status =
+                        "🚫 Permanently Banned";
+
+                }
+
+                else {
+
+                    status =
+                        "🚫 Banned for " +
+                        user.banDuration +
+                        " " +
+                        user.banUnit +
+                        (
+                            user.banDuration === 1
+                            ? ""
+                            : "s"
+                        );
+
+                }
+
+            }
+
+            else {
+
+                status =
+                    "✅ Active";
+
+            }
+
+
+            div.innerHTML = `
+
+                <strong>
+                    ${escapeHTML(user.username)}
+                </strong>
+
+                <br>
+
+                ${status}
+
+            `;
+
+
+            /*
+             * =========================
+             * UNBAN
+             * =========================
+             */
+
+            if (
+                isUserBanned(user)
+            ) {
+
+                const unbanButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                unbanButton.className =
+                    "admin-button unban-button";
+
+
+                unbanButton.textContent =
+                    "Unban User";
+
+
+                unbanButton.onclick =
+                    function() {
+
+                        users[index].banned =
+                            false;
+
+                        users[index].banReason =
+                            "";
+
+                        users[index].banDuration =
+                            null;
+
+                        users[index].banUnit =
+                            null;
+
+                        users[index].banExpires =
+                            null;
+
+
+                        saveUsers();
+
+                        renderAdmin();
+
+                    };
+
+
+                div.appendChild(
+                    unbanButton
+                );
+
+            }
+
+
+            /*
+             * =========================
+             * BAN CONTROLS
+             * =========================
+             */
+
+            else {
+
+                const controls =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                controls.className =
+                    "ban-controls";
+
+
+                controls.innerHTML = `
+
+                    <label>
+                        <strong>
+                            Ban duration
+                        </strong>
+                    </label>
+
+                    <input
+                        class="ban-number"
+                        type="number"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="Length"
+                    >
+
+                    <select
+                        class="ban-unit"
+                    >
+
+                        <option value="seconds">
+                            Seconds
+                        </option>
+
+                        <option value="minutes">
+                            Minutes
+                        </option>
+
+                        <option value="hours">
+                            Hours
+                        </option>
+
+                        <option value="days">
+                            Days
+                        </option>
+
+                        <option value="weeks">
+                            Weeks
+                        </option>
+
+                        <option value="months">
+                            Months
+                        </option>
+
+                        <option value="permanent">
+                            Permanent
+                        </option>
+
+                    </select>
+
+
+                    <label>
+                        <strong>
+                            Ban reason
+                        </strong>
+                    </label>
+
+                    <textarea
+                        class="ban-reason-input"
+                        placeholder="Enter the reason for this ban..."
+                    ></textarea>
+
+
+                    <button
+                        class="admin-button ban-button"
+                    >
+                        Ban User
+                    </button>
+
+                `;
+
+
+                const numberInput =
+                    controls.querySelector(
+                        ".ban-number"
+                    );
+
+
+                const unitSelect =
+                    controls.querySelector(
+                        ".ban-unit"
+                    );
+
+
+                const reasonInput =
+                    controls.querySelector(
+                        ".ban-reason-input"
+                    );
+
+
+                const banButton =
+                    controls.querySelector(
+                        ".ban-button"
+                    );
+
+
+                /*
+                 * Permanent =
+                 * disable number box
+                 */
+
+                unitSelect.onchange =
+                    function() {
+
+                        if (
+                            unitSelect.value
+                            === "permanent"
+                        ) {
+
+                            numberInput.value =
+                                "";
+
+                            numberInput.disabled =
+                                true;
+
+                        }
+
+                        else {
+
+                            numberInput.disabled =
+                                false;
+
+                        }
+
+                    };
+
+
+                /*
+                 * BAN
+                 */
+
+                banButton.onclick =
+                    function() {
+
+                        const unit =
+                            unitSelect.value;
+
+
+                        const reason =
+                            reasonInput.value
+                                .trim();
+
+
+                        if (!reason) {
+
+                            alert(
+                                "Please enter a ban reason."
+                            );
+
+                            return;
+
+                        }
+
+
+                        if (
+                            unit !== "permanent"
+                            &&
+                            (
+                                !numberInput.value
+                                ||
+                                Number(
+                                    numberInput.value
+                                ) < 1
+                                ||
+                                !Number.isInteger(
+                                    Number(
+                                        numberInput.value
+                                    )
+                                )
+                            )
+                        ) {
+
+                            alert(
+                                "Enter a whole number for the ban length."
+                            );
+
+                            return;
+
+                        }
+
+
+                        users[index].banned =
+                            true;
+
+
+                        users[index].banReason =
+                            reason;
+
+
+                        users[index].banUnit =
+                            unit;
+
+
+                        if (
+                            unit === "permanent"
+                        ) {
+
+                            users[index].banDuration =
+                                null;
+
+                            users[index].banExpires =
+                                null;
+
+                        }
+
+                        else {
+
+                            const amount =
+                                Number(
+                                    numberInput.value
+                                );
+
+
+                            users[index].banDuration =
+                                amount;
+
+
+                            users[index].banExpires =
+                                calculateBanExpiry(
+                                    amount,
+                                    unit
+                                );
+
+                        }
+
+
+                        saveUsers();
+
+                        renderAdmin();
+
+                    };
+
+
+                div.appendChild(
+                    controls
+                );
+
+            }
+
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+
+    /*
+     * =========================
+     * NO RESULTS
+     * =========================
+     */
+
+    if (
+        list.children.length === 0
+        &&
+        search
+    ) {
+
+        const noResults =
+            document.createElement(
+                "div"
+            );
+
+
+        noResults.className =
+            "user";
+
+
+        noResults.innerHTML = `
+
+            No players found matching
+            "<strong>
+                ${escapeHTML(search)}
+            </strong>".
+
+        `;
+
+
+        list.appendChild(
+            noResults
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   LOGOUT
+================================================= */
+
+function logout() {
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+    location.reload();
+
+}
+
+
+/* =================================================
+   LOGIN / REGISTER SWITCH
+================================================= */
+
+function showRegister() {
+
+    document
+        .getElementById("loginForm")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("registerForm")
+        .classList.remove("hidden");
+
+}
+
+
+function showLogin() {
+
+    document
+        .getElementById("registerForm")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("loginForm")
+        .classList.remove("hidden");
+
+}
+
+
+/* =================================================
+   ESCAPE HTML
+================================================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =================================================
+   AUTO LOGIN
+================================================= */
+
+const savedUser =
+    localStorage.getItem(
+        "currentUser"
+    );
+
+
+if (savedUser) {
+
+    const user =
+        users.find(
+            u =>
+                u.username === savedUser
+        );
+
+
+    if (
+        user &&
+        isUserBanned(user)
+    ) {
+
+        showBanScreen(user);
+
+    }
+
+    else if (user) {
+
+        showApp();
+
+    }
+
+    else {
+
+        localStorage.removeItem(
+            "currentUser"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
