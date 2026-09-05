@@ -1,0 +1,519 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* AUTH */
+
+.auth-container {
+  max-width: 420px;
+  margin: 70px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.12);
+}
+
+.auth-container h1 {
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-form input,
+.search-input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+.auth-form button,
+.primary-button {
+  padding: 12px;
+  border: 0;
+  border-radius: 7px;
+  background: #111;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 15px;
+  color: #666;
+  cursor: pointer;
+}
+
+.error {
+  color: #d00;
+  min-height: 18px;
+}
+
+
+/* MODERATION */
+
+.moderation-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.moderation-box {
+  max-width: 560px;
+  width: 100%;
+  background: white;
+  border-radius: 14px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.12);
+}
+
+.moderation-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.moderation-subtitle {
+  color: #666;
+  margin: 12px 0 20px;
+}
+
+.moderation-reason {
+  background: #f1f1f1;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.moderation-duration {
+  font-weight: bold;
+  margin: 12px;
+}
+
+.terms {
+  font-size: 13px;
+  color: #777;
+}
+
+.permanent {
+  color: #b00020;
+  font-weight: bold;
+}
+
+.reactivate-box {
+  margin-top: 20px;
+}
+
+.reactivate-box label {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 15px;
+}
+
+.reactivate-box button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 7px;
+  background: #111;
+  color: white;
+  cursor: pointer;
+}
+
+
+/* TOP BAR */
+
+.topbar {
+  height: 60px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 18px;
+  gap: 18px;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 10;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.search {
+  flex: 1;
+  max-width: 500px;
+}
+
+.search input {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+
+.top-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-button {
+  padding: 9px 11px;
+  border: 0;
+  background: #eee;
+  border-radius: 7px;
+  color: #222;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.top-button:hover,
+.side-button:hover {
+  background: #ddd;
+}
+
+.coins {
+  font-weight: bold;
+  padding: 8px 10px;
+}
+
+.notification-badge {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: #d00;
+  color: white;
+
+  font-size: 11px;
+
+  margin-left: 5px;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+  position: fixed;
+
+  left: 0;
+  top: 60px;
+  bottom: 0;
+
+  width: 210px;
+
+  background: white;
+
+  border-right: 1px solid #ddd;
+
+  padding: 15px 10px;
+}
+
+.side-button {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  margin-bottom: 6px;
+
+  border: 0;
+
+  background: white;
+
+  border-radius: 7px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  color: #222;
+
+  text-decoration: none;
+
+  display: flex;
+}
+
+.side-button.active {
+  background: #e9e9e9;
+  font-weight: bold;
+}
+
+
+/* CONTENT */
+
+.content {
+  margin-left: 210px;
+  padding: 25px;
+  max-width: 1250px;
+}
+
+
+/* PROFILE */
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  background: #222;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.verified {
+  display: inline-block;
+
+  background: #1677ff;
+  color: white;
+
+  border-radius: 50%;
+
+  font-size: 11px;
+
+  width: 18px;
+  height: 18px;
+
+  text-align: center;
+  line-height: 18px;
+
+  margin-left: 5px;
+}
+
+
+/* GAMES */
+
+.section {
+  margin-bottom: 30px;
+}
+
+.game-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(190px, 1fr));
+
+  gap: 15px;
+}
+
+.game-card {
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+.game-thumb {
+  height: 110px;
+
+  background: #ddd;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+}
+
+.game-info {
+  padding: 12px;
+}
+
+.game-info h3 {
+  margin: 0 0 5px;
+}
+
+.game-info p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+
+/* FRIENDS / NOTIFICATIONS / ADMIN */
+
+.friends-list,
+.notifications-list,
+.admin-users {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.friend-card,
+.notification-card,
+.admin-user {
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 9px;
+
+  padding: 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.friend-actions,
+.admin-actions {
+  margin-left: auto;
+
+  display: flex;
+
+  gap: 7px;
+
+  flex-wrap: wrap;
+}
+
+.small-button {
+  padding: 8px 10px;
+
+  border: 0;
+
+  border-radius: 6px;
+
+  background: #eee;
+
+  cursor: pointer;
+}
+
+.small-button.dark {
+  background: #111;
+  color: white;
+}
+
+.small-button.danger {
+  background: #d00;
+  color: white;
+}
+
+.admin-controls {
+  display: flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 18px;
+}
+
+.admin-user-info {
+  flex: 1;
+}
+
+.status {
+  font-size: 12px;
+
+  color: #777;
+
+  margin-top: 4px;
+}
+
+.moderator-label {
+  font-size: 12px;
+
+  font-weight: bold;
+
+  margin-left: 5px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .topbar {
+    gap: 8px;
+    padding: 0 10px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .top-right .coins {
+    display: none;
+  }
+
+  .sidebar {
+    width: 62px;
+    padding: 10px 7px;
+  }
+
+  .side-button {
+    font-size: 0;
+    justify-content: center;
+  }
+
+  .content {
+    margin-left: 62px;
+    padding: 15px;
+  }
+
+  .top-button {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+}

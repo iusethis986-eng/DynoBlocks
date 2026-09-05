@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dynablox - Home</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="home">
+
+<div class="app">
+
+  <header class="topbar">
+
+    <a class="logo" href="home.html">
+      Dynablox
+    </a>
+
+    <div class="search">
+      <input
+        id="search"
+        type="text"
+        placeholder="Search games..."
+        oninput="searchGames()"
+      >
+    </div>
+
+    <div class="top-right">
+
+      <a class="top-button" href="notifications.html">
+        Notifications
+        <span
+          id="notificationCount"
+          class="notification-badge hidden"
+        >0</span>
+      </a>
+
+      <a class="top-button" href="friends.html">
+        Friends
+      </a>
+
+      <div class="coins">
+        Coins:
+        <span id="coinAmount">100</span>
+      </div>
+
+      <button class="top-button" onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <aside class="sidebar">
+
+    <a
+      class="side-button"
+      data-page-link="home"
+      href="home.html"
+    >
+      Home
+    </a>
+
+    <a
+      class="side-button"
+      data-page-link="friends"
+      href="friends.html"
+    >
+      Friends
+    </a>
+
+    <a
+      class="side-button"
+      data-page-link="notifications"
+      href="notifications.html"
+    >
+      Notifications
+    </a>
+
+    <a
+      class="side-button"
+      href="#"
+      onclick="alert('Discover coming soon'); return false;"
+    >
+      Discover
+    </a>
+
+    <a
+      class="side-button"
+      href="#"
+      onclick="alert('Avatar coming soon'); return false;"
+    >
+      Avatar
+    </a>
+
+    <a
+      class="side-button"
+      href="#"
+      onclick="alert('Inventory coming soon'); return false;"
+    >
+      Inventory
+    </a>
+
+    <a
+      id="adminButton"
+      class="side-button hidden"
+      data-page-link="admin"
+      href="admin.html"
+    >
+      Admin
+    </a>
+
+  </aside>
+
+
+  <main class="content">
+
+    <div class="profile">
+
+      <div id="profileAvatar" class="avatar">
+        D
+      </div>
+
+      <div>
+
+        <h2>
+          Welcome,
+          <span id="welcomeUsername"></span>
+
+          <span
+            id="verifiedBadge"
+            class="verified hidden"
+          >✓</span>
+
+        </h2>
+
+        <p>
+          Welcome to Dynablox!
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <section class="section">
+
+      <h2>Games</h2>
+
+      <div class="game-grid">
+
+
+        <div
+          class="game-card"
+          onclick="playGame('Boat Racing')"
+        >
+
+          <div class="game-thumb">
+            Boat Racing
+          </div>
+
+          <div class="game-info">
+
+            <h3>
+              Boat Racing
+            </h3>
+
+            <p>
+              Race across the water.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="game-card"
+          onclick="playGame('Ice Track')"
+        >
+
+          <div class="game-thumb">
+            Ice Track
+          </div>
+
+          <div class="game-info">
+
+            <h3>
+              Ice Track
+            </h3>
+
+            <p>
+              Race on a frozen track.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="game-card"
+          onclick="playGame('Adventure World')"
+        >
+
+          <div class="game-thumb">
+            Adventure
+          </div>
+
+          <div class="game-info">
+
+            <h3>
+              Adventure World
+            </h3>
+
+            <p>
+              Explore a huge world.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="game-card"
+          onclick="playGame('Speed Run')"
+        >
+
+          <div class="game-thumb">
+            Speed Run
+          </div>
+
+          <div class="game-info">
+
+            <h3>
+              Speed Run
+            </h3>
+
+            <p>
+              How fast can you finish?
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="game-card"
+          onclick="playGame('City Life')"
+        >
+
+          <div class="game-thumb">
+            City Life
+          </div>
+
+          <div class="game-info">
+
+            <h3>
+              City Life
+            </h3>
+
+            <p>
+              Live your virtual life.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="game-card"
+          onclick="playGame('Mystery Island')"
+        >
+
+          <div class="game-thumb">
+            Mystery Island
+          </div>
+
+          <div class="game-info">
+
+            <h3>
+              Mystery Island
+            </h3>
+
+            <p>
+              Discover the island's secrets.
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

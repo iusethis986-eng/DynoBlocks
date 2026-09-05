@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Dynablox - Notifications</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body data-page="notifications">
+
+<div class="app">
+
+  <header class="topbar">
+
+    <a class="logo" href="home.html">
+      Dynablox
+    </a>
+
+    <div class="search">
+
+      <input
+        id="search"
+        type="text"
+        placeholder="Search games..."
+      >
+
+    </div>
+
+
+    <div class="top-right">
+
+      <a class="top-button" href="notifications.html">
+        Notifications
+
+        <span
+          id="notificationCount"
+          class="notification-badge hidden"
+        >0</span>
+
+      </a>
+
+      <a
+        class="top-button"
+        href="friends.html"
+      >
+        Friends
+      </a>
+
+      <div class="coins">
+        Coins:
+        <span id="coinAmount">100</span>
+      </div>
+
+      <button
+        class="top-button"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <aside class="sidebar">
+
+    <a
+      class="side-button"
+      data-page-link="home"
+      href="home.html"
+    >
+      Home
+    </a>
+
+    <a
+      class="side-button"
+      data-page-link="friends"
+      href="friends.html"
+    >
+      Friends
+    </a>
+
+    <a
+      class="side-button"
+      data-page-link="notifications"
+      href="notifications.html"
+    >
+      Notifications
+    </a>
+
+    <a
+      class="side-button"
+      href="#"
+      onclick="alert('Discover coming soon'); return false;"
+    >
+      Discover
+    </a>
+
+    <a
+      class="side-button"
+      href="#"
+      onclick="alert('Avatar coming soon'); return false;"
+    >
+      Avatar
+    </a>
+
+    <a
+      class="side-button"
+      href="#"
+      onclick="alert('Inventory coming soon'); return false;"
+    >
+      Inventory
+    </a>
+
+    <a
+      id="adminButton"
+      class="side-button hidden"
+      data-page-link="admin"
+      href="admin.html"
+    >
+      Admin
+    </a>
+
+  </aside>
+
+
+  <main class="content">
+
+    <section class="section">
+
+      <h2>
+        Notifications
+      </h2>
+
+      <div
+        id="notificationsList"
+        class="notifications-list"
+      ></div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

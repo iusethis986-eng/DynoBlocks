@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Dynablox - Account Status</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body data-page="moderation">
+
+<div class="moderation-screen">
+
+  <div class="moderation-box">
+
+    <div
+      id="moderationTitle"
+      class="moderation-title"
+    >
+      Account suspended
+    </div>
+
+
+    <div
+      id="moderationSubtitle"
+      class="moderation-subtitle"
+    ></div>
+
+
+    <div
+      id="moderationReason"
+      class="moderation-reason"
+    ></div>
+
+
+    <div
+      id="moderationDuration"
+      class="moderation-duration"
+    ></div>
+
+
+    <div
+      id="moderationTerms"
+      class="terms"
+    ></div>
+
+
+    <div
+      id="permanentText"
+      class="permanent hidden"
+    >
+      This account cannot be reactivated.
+    </div>
+
+
+    <div
+      id="reactivateBox"
+      class="reactivate-box hidden"
+    >
+
+      <label>
+
+        <input
+          id="reactivateCheck"
+          type="checkbox"
+          onchange="updateReactivateButton()"
+        >
+
+        I understand that my suspension has ended.
+
+      </label>
+
+
+      <button
+        id="reactivateButton"
+        onclick="reactivateAccount()"
+        disabled
+      >
+        Reactivate Account
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
