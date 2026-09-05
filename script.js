@@ -2027,3 +2027,15 @@ document.addEventListener(
   "DOMContentLoaded",
   initPage
 );
+function getNextPlayerId() {
+    const nextId = Number(
+        localStorage.getItem("dynablox_nextPlayerId") || "1"
+    );
+
+    localStorage.setItem(
+        "dynablox_nextPlayerId",
+        String(nextId + 1)
+    );
+
+    return nextId;
+}
