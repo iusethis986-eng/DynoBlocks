@@ -584,11 +584,18 @@ function searchGames() {
 }
 
 
+/* =========================
+   GAME LAUNCHING
+========================= */
+
 function playGame(name) {
 
-  alert(
-    "Launching " + name + "..."
-  );
+  const user = requireLogin();
+
+  if (!user) return;
+
+  window.location.href =
+    "engine.html?game=" + encodeURIComponent(name);
 
 }
 
@@ -1012,37 +1019,6 @@ function renderNotifications(
   saveUsers();
 
   updateNotificationCount();
-
-}
-
-
-function updateNotificationCount() {
-
-  const badge =
-    document.getElementById(
-      "notificationCount"
-    );
-
-  const user =
-    getCurrentUser();
-
-
-  if (!badge) return;
-
-
-  const count =
-    user?.notifications?.length ||
-    0;
-
-
-  badge.textContent =
-    count;
-
-
-  badge.classList.toggle(
-    "hidden",
-    count === 0
-  );
 
 }
 
@@ -2027,15 +2003,3 @@ document.addEventListener(
   "DOMContentLoaded",
   initPage
 );
-function getNextPlayerId() {
-    const nextId = Number(
-        localStorage.getItem("dynablox_nextPlayerId") || "1"
-    );
-
-    localStorage.setItem(
-        "dynablox_nextPlayerId",
-        String(nextId + 1)
-    );
-
-    return nextId;
-}
