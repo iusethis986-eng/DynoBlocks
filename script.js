@@ -23,12 +23,11 @@ function loadUsers() {
 
 
 function saveUsers() {
-
-  localStorage.setItem(
-    "dynablox_users",
-    JSON.stringify(users)
-  );
-
+  try {
+    localStorage.setItem("dynablox_users", JSON.stringify(users));
+  } catch (error) {
+    console.error("Dynablox could not save account data in this browser.", error);
+  }
 }
 
 
@@ -122,11 +121,9 @@ saveUsers();
 ========================= */
 
 function getUser(username) {
-
-  return users.find(
-    user => user.username === username
-  );
-
+  if (!username) return null;
+  const wanted = String(username).toLowerCase();
+  return users.find(user => String(user.username).toLowerCase() === wanted) || null;
 }
 
 
@@ -589,14 +586,20 @@ function searchGames() {
 ========================= */
 
 function playGame(name) {
-
   const user = requireLogin();
-
   if (!user) return;
 
-  window.location.href =
-    "engine.html?game=" + encodeURIComponent(name);
+  const gameName = String(name || "").trim();
+  if (!gameName) {
+    console.error("playGame called without a game name.");
+    return;
+  }
 
+  // Use a URL relative to this site so the engine works on GitHub Pages
+  // and on a custom domain, including when the site is hosted in a subfolder.
+  const url = new URL("engine.html", window.location.href);
+  url.searchParams.set("game", gameName);
+  window.location.href = url.href;
 }
 
 
@@ -818,17 +821,16 @@ function sendFriendRequest(
   if (
     !current ||
     !target ||
-    target.friendRequests.includes(
-      current.username
-    )
+    current.username === target.username ||
+    current.friends.includes(target.username) ||
+    target.friends.includes(current.username) ||
+    target.friendRequests.includes(current.username) ||
+    current.friendRequests.includes(target.username)
   ) {
     return;
   }
 
-
-  target.friendRequests.push(
-    current.username
-  );
+  target.friendRequests.push(current.username);
 
 
   target.notifications.unshift({
@@ -863,10 +865,13 @@ function acceptFriendRequest(
     getUser(username);
 
 
-  if (!current || !target) {
+  if (
+    !current ||
+    !target ||
+    !current.friendRequests.includes(username)
+  ) {
     return;
   }
-
 
   current.friendRequests =
     current.friendRequests.filter(
@@ -941,6 +946,31 @@ function declineFriendRequest(
 
   renderFriends(current);
 
+}
+
+
+/* =========================
+   NOTIFICATION BADGE
+========================= */
+
+function updateNotificationCount() {
+  const user = getCurrentUser();
+  const count = user && Array.isArray(user.notifications)
+    ? user.notifications.length
+    : 0;
+
+  // Support the common IDs/classes used by different Dynablox page layouts.
+  const elements = new Set([
+    ...document.querySelectorAll(
+      "#notificationCount, #notificationsCount, #notificationBadge, [data-notification-count], .notification-count, .notification-badge"
+    )
+  ]);
+
+  elements.forEach(element => {
+    element.textContent = count > 99 ? "99+" : String(count);
+    element.classList.toggle("hidden", count === 0);
+    element.setAttribute("aria-label", count + " notifications");
+  });
 }
 
 
@@ -1050,6 +1080,11 @@ function initAdminPage() {
 
   renderAdmin();
 
+  const search = document.getElementById("adminSearch");
+  if (search && !search.dataset.dynabloxSearchBound) {
+    search.addEventListener("input", renderAdmin);
+    search.dataset.dynabloxSearchBound = "true";
+  }
 }
 
 
