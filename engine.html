@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Dynablox Engine</title>
+
+<style>
+*{box-sizing:border-box}
+html,body{
+ margin:0;width:100%;height:100%;overflow:hidden;
+ background:#87ceeb;font-family:Arial,sans-serif;touch-action:none
+}
+canvas{
+ position:fixed;inset:0;width:100%;height:100%;
+ display:block;touch-action:none;z-index:0
+}
+#hud{
+ position:fixed;inset:0;z-index:2;
+ pointer-events:none;color:white
+}
+#back{
+ position:absolute;top:14px;left:14px;z-index:4;
+ pointer-events:auto;border:0;border-radius:8px;
+ padding:10px 16px;background:#222;color:white;font-weight:bold
+}
+#title{
+ position:absolute;top:15px;left:50%;transform:translateX(-50%);
+ padding:9px 14px;border-radius:8px;background:#0008;
+ font-weight:bold;white-space:nowrap
+}
+#help{
+ position:absolute;top:58px;left:50%;transform:translateX(-50%);
+ padding:7px 10px;border-radius:7px;background:#0008;
+ font-size:12px;white-space:nowrap
+}
+#stats{
+ position:absolute;top:12px;right:12px;
+ padding:8px;border-radius:7px;background:#0008;font-size:12px
+}
+#joystick{
+ position:absolute;left:24px;bottom:26px;z-index:4;
+ width:130px;height:130px;border-radius:50%;
+ border:3px solid #ffffffa0;background:#ffffff40;
+ pointer-events:auto;touch-action:none
+}
+#stick{
+ position:absolute;left:50%;top:50%;
+ width:54px;height:54px;transform:translate(-50%,-50%);
+ border:2px solid white;border-radius:50%;background:#ffffffdf
+}
+#jump{
+ position:absolute;right:27px;bottom:38px;z-index:4;
+ width:82px;height:82px;border:3px solid white;border-radius:50%;
+ background:#287ee5;color:white;font-size:14px;font-weight:bold;
+ pointer-events:auto;touch-action:none
+}
+#loadError{
+ display:none;position:fixed;inset:0;z-index:20;
+ padding:28px;background:#17212b;color:white;
+ font-size:17px;line-height:1.5
+}
+@media(max-height:450px){
+ #joystick{width:100px;height:100px;bottom:12px;left:14px}
+ #stick{width:44px;height:44px}
+ #jump{width:68px;height:68px;right:16px;bottom:20px}
+ #help{top:52px}
+}
+</style>
+</head>
+
+<body>
+<div id="hud">
+ <button id="back">← Back</button>
+ <div id="title">Dynablox</div>
+ <div id="help">Drag to look · Joystick to move · Jump to leap</div>
+ <div id="stats">Loading 3D world...</div>
+ <div id="joystick"><div id="stick"></div></div>
+ <button id="jump">JUMP</button>
+</div>
+
+<div id="loadError">
+ <h2>Could not load the 3D engine</h2>
+ <p>Check your internet connection and allow network access. Then try again.</p>
+ <button onclick="location.reload()">Try again</button>
+</div>
+
+<script>
+"use strict";
+
+document.getElementById("back").onclick=()=>{
+ if(history.length>1) history.back();
+ else location.href="home.html";
+};
+
+const gameName =
+ new URLSearchParams(location.search).get("game") || "Adventure World";
+
+document.title=gameName+" - Dynablox";
+document.getElementById("title").textContent=gameName;
+
+/* Load Three.js before starting the game. */
+function loadThree(url){
+ return new Promise((resolve,reject)=>{
+  const script=document.createElement("script");
+  script.src=url;
+  script.onload=()=>{
+   if(window.THREE) resolve();
+   else reject(new Error("Three.js unavailable"));
+  };
+  script.onerror=()=>reject(new Error("Download failed"));
+  document.head.appendChild(script);
+ });
+}
+
+async function boot(){
+ try{
+  try{
+   await loadThree(
+    "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+   );
+  }catch(firstError){
+   await loadThree(
+    "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"
+   );
+  }
+  startGame();
+ }catch(error){
+  document.getElementById("loadError").style.display="block";
+  document.getElementById("stats").textContent="Engine failed to load";
+ }
+}
+
+function startGame(){
+ const THREE=window.THREE;
+
+ const scene=new THREE.Scene();
+ scene.background=new THREE.Color(0x87ceeb);
+ scene.fog=new THREE.Fog(0x87ceeb,55,150);
+
+ const camera=new THREE.PerspectiveCamera(
+  70,innerWidth/innerHeight,0.1,400
+ );
+
+ const renderer=new THREE.WebGLRenderer({antialias:true});
+ renderer.setSize(innerWidth,innerHeight);
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+ renderer.shadowMap.enabled=true;
+ renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+ renderer.domElement.style.zIndex="0";
+ document.body.appendChild(renderer.domElement);
+
+ scene.add(new THREE.HemisphereLight(0xffffff,0x71845d,2));
+
+ const sunlight=new THREE.DirectionalLight(0xffffff,2);
+ sunlight.position.set(-25,50,25);
+ sunlight.castShadow=true;
+ scene.add(sunlight);
+
+ const materials={
+  grass:new THREE.MeshStandardMaterial({color:0x59a83b}),
+  ice:new THREE.MeshStandardMaterial({color:0x9ceaff,roughness:0.15}),
+  road:new THREE.MeshStandardMaterial({color:0x555963}),
+  yellow:new THREE.MeshStandardMaterial({color:0xffd52a}),
+  blue:new THREE.MeshStandardMaterial({color:0x1769d2}),
+  green:new THREE.MeshStandardMaterial({color:0x22a447}),
+  black:new THREE.MeshStandardMaterial({color:0x171717}),
+  white:new THREE.MeshStandardMaterial({color:0xffffff}),
+  red:new THREE.MeshStandardMaterial({color:0xe84141}),
+  stone:new THREE.MeshStandardMaterial({color:0x858b91}),
+  wood:new THREE.MeshStandardMaterial({color:0x986236})
+ };
+
+ const cubeGeometry=new THREE.BoxGeometry(1,1,1);
+ const solids=[];
+
+ function block(x,y,z,material,sx=1,sy=1,sz=1,collide=true){
+  const mesh=new THREE.Mesh(cubeGeometry,material);
+  mesh.position.set(x,y,z);
+  mesh.scale.set(sx,sy,sz);
+  mesh.castShadow=true;
+  mesh.receiveShadow=true;
+  scene.add(mesh);
+
+  if(collide){
+   solids.push({
+    minX:x-sx/2,maxX:x+sx/2,
+    minY:y-sy/2,maxY:y+sy/2,
+    minZ:z-sz/2,maxZ:z+sz/2
+   });
+  }
+  return mesh;
+ }
+
+ function ground(x,z,sx,sz,material){
+  return block(x,-0.5,z,material,sx,1,sz,true);
+ }
+
+ const iceGame=/ice|boat/i.test(gameName);
+ const speedGame=/speed|run/i.test(gameName);
+ const cityGame=/city|life/i.test(gameName);
+ const mysteryGame=/mystery|adventure/i.test(gameName);
+
+ /* Build a simple environment for each game. */
+ if(iceGame){
+  scene.background=new THREE.Color(0xb9e7ff);
+  scene.fog.color.set(0xb9e7ff);
+
+  ground(0,-5,18,160,materials.ice);
+  ground(-9,-5,1,160,materials.ice);
+  ground(9,-5,1,160,materials.ice);
+
+  for(let z=-75;z<=65;z+=8){
+   block(-5,0.12,z,materials.red,0.3,0.25,0.5,false);
+   block(5,0.12,z,materials.red,0.3,0.25,0.5,false);
+  }
+
+  for(let z=-60;z<=50;z+=12){
+   block(-14,0.5,z,materials.ice,4,1,4);
+   block(14,0.5,z+4,materials.ice,4,1,4);
+  }
+ }else if(speedGame){
+  ground(0,0,18,150,materials.road);
+  ground(-10,0,8,150,materials.grass);
+  ground(10,0,8,150,materials.grass);
+
+  for(let z=-70;z<70;z+=8){
+   block(0,0.02,z,materials.white,0.25,0.04,3,false);
+  }
+
+  for(let z=-60;z<55;z+=15){
+   block(-6,1,z,materials.red,1,2,1);
+   block(6,1,z+7,materials.blue,1,2,1);
+  }
+ }else{
+  ground(0,0,150,150,materials.grass);
+
+  if(cityGame){
+   ground(0,0,14,150,materials.road);
+   ground(0,0,150,14,materials.road);
+
+   const buildingColors=[0x9babbc,0xc4b8a3,0x8297ac,0xd5c5b2];
+
+   for(let x=-55;x<=55;x+=15){
+    for(let z=-55;z<=55;z+=15){
+     if(Math.abs(x)<12||Math.abs(z)<12)continue;
+
+     const height=8+Math.random()*18;
+     const buildingMaterial=new THREE.MeshStandardMaterial({
+      color:buildingColors[
+       Math.floor(Math.random()*buildingColors.length)
+      ]
+     });
+
+     block(x,height/2,z,buildingMaterial,8,height,8);
+    }
+   }
+  }else{
+   for(let x=-60;x<=60;x+=12){
+    for(let z=-60;z<=60;z+=12){
+     if(Math.abs(x)<10&&Math.abs(z)<10)continue;
+
+     if(Math.random()>0.72){
+      block(x,0.5,z,materials.stone,3,1,3);
+     }
+    }
+   }
+
+   if(mysteryGame){
+    for(let i=0;i<12;i++){
+     const x=(Math.random()-0.5)*70;
+     const z=(Math.random()-0.5)*70;
+     block(x,2,z,materials.wood,2,4,2);
+     block(x,4.2,z,materials.wood,3,0.5,3);
+    }
+   }
+  }
+ }
+
+ /* Create the blocky Roblox noob. */
+ const avatar=new THREE.Group();
+ scene.add(avatar);
+
+ function part(parent,material,x,y,z,sx,sy,sz){
+  const mesh=new THREE.Mesh(cubeGeometry,material);
+  mesh.position.set(x,y,z);
+  mesh.scale.set(sx,sy,sz);
+  mesh.castShadow=true;
+  mesh.receiveShadow=true;
+  parent.add(mesh);
+  return mesh;
+ }
+
+ const legHeight=1.35;
+ const torsoHeight=1.5;
+ const headSize=0.9;
+ const bodyWidth=1.5;
+ const bodyDepth=0.7;
+ const armWidth=0.55;
+ const armHeight=1.5;
+ const legWidth=0.65;
+
+ const leftLeg=new THREE.Group();
+ leftLeg.position.set(-0.37,legHeight,0);
+ avatar.add(leftLeg);
+ part(leftLeg,materials.green,0,-legHeight/2,0,legWidth,legHeight,0.7);
+
+ const rightLeg=new THREE.Group();
+ rightLeg.position.set(0.37,legHeight,0);
+ avatar.add(rightLeg);
+ part(rightLeg,materials.green,0,-legHeight/2,0,legWidth,legHeight,0.7);
+
+ const torsoBottom=legHeight;
+ const torsoTop=torsoBottom+torsoHeight;
+
+ part(
+  avatar,materials.blue,0,torsoBottom+torsoHeight/2,0,
+  bodyWidth,torsoHeight,bodyDepth
+ );
+
+ const leftArm=new THREE.Group();
+ leftArm.position.set(
+  -bodyWidth/2-armWidth/2+0.03,torsoTop-0.06,0
+ );
+ avatar.add(leftArm);
+ part(leftArm,materials.yellow,0,-armHeight/2,0,armWidth,armHeight,0.7);
+
+ const rightArm=new THREE.Group();
+ rightArm.position.set(
+  bodyWidth/2+armWidth/2-0.03,torsoTop-0.06,0
+ );
+ avatar.add(rightArm);
+ part(rightArm,materials.yellow,0,-armHeight/2,0,armWidth,armHeight,0.7);
+
+ const headY=torsoTop+headSize/2-0.02;
+ part(avatar,materials.yellow,0,headY,0,headSize,headSize,headSize);
+
+ const face=new THREE.Group();
+ face.position.set(0,headY,headSize/2+0.01);
+ avatar.add(face);
+
+ part(face,materials.black,-0.2,0.1,0,0.12,0.13,0.035);
+ part(face,materials.black,0.2,0.1,0,0.12,0.13,0.035);
+ part(face,materials.black,0,-0.13,0,0.3,0.06,0.035);
+
+ const playerHeight=headY+headSize/2;
+ const playerRadius=0.42;
+
+ const player={x:0,y:0,z:0,speed:7.5};
+ let verticalVelocity=0;
+ let grounded=true;
+ let jumpQueued=false;
+
+ /* Camera look controls. */
+ let yaw=0;
+ let pitch=0.2;
+
+ const minPitch=-0.45;
+ const maxPitch=1.0;
+ const cameraDistance=8;
+
+ let dragging=false;
+ let cameraPointerId=null;
+ let lastX=0;
+ let lastY=0;
+
+ const canvas=renderer.domElement;
+
+ canvas.addEventListener("pointerdown",e=>{
+  if(e.pointerType==="mouse"&&e.button!==0)return;
+
+  dragging=true;
+  cameraPointerId=e.pointerId;
+  lastX=e.clientX;
+  lastY=e.clientY;
+
+  canvas.setPointerCapture(e.pointerId);
+ });
+
+ canvas.addEventListener("pointermove",e=>{
+  if(!dragging||e.pointerId!==cameraPointerId)return;
+
+  const dx=e.clientX-lastX;
+  const dy=e.clientY-lastY;
+
+  lastX=e.clientX;
+  lastY=e.clientY;
+
+  yaw-=dx*0.006;
+
+  // FIX: dragging up looks up; dragging down looks down.
+  pitch+=dy*0.006;
+  pitch=THREE.MathUtils.clamp(pitch,minPitch,maxPitch);
+ });
+
+ function endCameraDrag(e){
+  if(e.pointerId===cameraPointerId){
+   dragging=false;
+   cameraPointerId=null;
+  }
+ }
+
+ canvas.addEventListener("pointerup",endCameraDrag);
+ canvas.addEventListener("pointercancel",endCameraDrag);
+
+ /* Keyboard movement for computers. */
+ const keys={};
+
+ addEventListener("keydown",e=>{
+  keys[e.key.toLowerCase()]=true;
+
+  if(e.code==="Space"){
+   jumpQueued=true;
+   e.preventDefault();
+  }
+ });
+
+ addEventListener("keyup",e=>{
+  keys[e.key.toLowerCase()]=false;
+ });
+
+ /* Mobile joystick. */
+ const joystick=document.getElementById("joystick");
+ const stick=document.getElementById("stick");
+
+ let joyX=0;
+ let joyY=0;
+ let joyPointerId=null;
+
+ function moveStick(e){
+  const rect=joystick.getBoundingClientRect();
+
+  let x=e.clientX-(rect.left+rect.width/2);
+  let y=e.clientY-(rect.top+rect.height/2);
+
+  const maxDistance=40;
+  const length=Math.hypot(x,y);
+
+  if(length>maxDistance){
+   x=x/length*maxDistance;
+   y=y/length*maxDistance;
+  }
+
+  joyX=x/maxDistance;
+  joyY=y/maxDistance;
+
+  stick.style.left="calc(50% + "+x+"px)";
+  stick.style.top="calc(50% + "+y+"px)";
+ }
+
+ joystick.addEventListener("pointerdown",e=>{
+  e.preventDefault();
+  e.stopPropagation();
+
+  joyPointerId=e.pointerId;
+  joystick.setPointerCapture(e.pointerId);
+  moveStick(e);
+ });
+
+ joystick.addEventListener("pointermove",e=>{
+  if(e.pointerId===joyPointerId)moveStick(e);
+ });
+
+ function resetStick(e){
+  if(e.pointerId!==joyPointerId)return;
+
+  joyPointerId=null;
+  joyX=0;
+  joyY=0;
+  stick.style.left="50%";
+  stick.style.top="50%";
+ }
+
+ joystick.addEventListener("pointerup",resetStick);
+ joystick.addEventListener("pointercancel",resetStick);
+
+ /* Jump button. */
+ document.getElementById("jump").addEventListener("pointerdown",e=>{
+  e.preventDefault();
+  e.stopPropagation();
+  jumpQueued=true;
+ });
+
+ /* Basic block collision and floor detection. */
+ function collides(x,y,z){
+  const minX=x-playerRadius;
+  const maxX=x+playerRadius;
+  const minY=y;
+  const maxY=y+playerHeight;
+  const minZ=z-playerRadius;
+  const maxZ=z+playerRadius;
+
+  return solids.some(s=>
+   maxX>s.minX&&minX<s.maxX&&
+   maxY>s.minY&&minY<s.maxY&&
+   maxZ>s.minZ&&minZ<s.maxZ
+  );
+ }
+
+ function findGround(x,y,z){
+  for(const s of solids){
+   const overlapsX=x+playerRadius>s.minX&&x-playerRadius<s.maxX;
+   const overlapsZ=z+playerRadius>s.minZ&&z-playerRadius<s.maxZ;
+
+   if(overlapsX&&overlapsZ&&
+      y<=s.maxY+0.12&&y>=s.maxY-0.3){
+    return s.maxY;
+   }
+  }
+  return null;
+ }
+
+ /* Main game loop. Variables are declared only once. */
+ let previousTime=performance.now();
+ let frameCount=0;
+ let fpsTime=0;
+
+ function animate(now){
+  requestAnimationFrame(animate);
+
+  const dt=Math.min((now-previousTime)/1000,0.04);
+  previousTime=now;
+
+  let forward=0;
+  let side=0;
+
+  if(keys.w||keys.arrowup)forward++;
+  if(keys.s||keys.arrowdown)forward--;
+  if(keys.d||keys.arrowright)side++;
+  if(keys.a||keys.arrowleft)side--;
+
+  // Joystick up means forward; down means backward.
+  forward-=joyY;
+  side+=joyX;
+
+  const inputLength=Math.hypot(forward,side);
+  if(inputLength>1){
+   forward/=inputLength;
+   side/=inputLength;
+  }
+
+  // Movement follows the camera's horizontal facing direction.
+  const dx=(
+   -Math.sin(yaw)*forward+Math.cos(yaw)*side
+  )*player.speed*dt;
+
+  const dz=(
+   -Math.cos(yaw)*forward-Math.sin(yaw)*side
+  )*player.speed*dt;
+
+  const nextX=player.x+dx;
+  if(!collides(nextX,player.y,player.z))player.x=nextX;
+
+  const nextZ=player.z+dz;
+  if(!collides(player.x,player.y,nextZ))player.z=nextZ;
+
+  if(jumpQueued&&grounded){
+   verticalVelocity=10;
+   grounded=false;
+  }
+
+  jumpQueued=false;
+  verticalVelocity-=25*dt;
+
+  let nextY=player.y+verticalVelocity*dt;
+
+  if(verticalVelocity<=0){
+   const floorY=findGround(player.x,nextY,player.z);
+
+   if(floorY!==null&&nextY<=floorY){
+    nextY=floorY;
+    verticalVelocity=0;
+    grounded=true;
+   }
+  }
+
+  if(nextY<0){
+   nextY=0;
+   verticalVelocity=0;
+   grounded=true;
+  }
+
+  player.y=nextY;
+
+  // Turn the avatar towards the movement direction.
+  if(inputLength>0.08){
+   const targetYaw=Math.atan2(-dx,-dz);
+   let difference=targetYaw-avatar.rotation.y;
+
+   while(difference>Math.PI)difference-=Math.PI*2;
+   while(difference<-Math.PI)difference+=Math.PI*2;
+
+   avatar.rotation.y+=difference*Math.min(1,dt*12);
+  }
+
+  const swing=inputLength>0.08?Math.sin(now*0.012)*0.55:0;
+  leftLeg.rotation.x=swing;
+  rightLeg.rotation.x=-swing;
+  leftArm.rotation.x=-swing*0.8;
+  rightArm.rotation.x=swing*0.8;
+
+  avatar.position.set(player.x,player.y,player.z);
+
+  const target=new THREE.Vector3(
+   player.x,player.y+2.5,player.z
+  );
+
+  const horizontalDistance=cameraDistance*Math.cos(pitch);
+
+  camera.position.set(
+   target.x+Math.sin(yaw)*horizontalDistance,
+   target.y+Math.sin(pitch)*cameraDistance,
+   target.z+Math.cos(yaw)*horizontalDistance
+  );
+
+  camera.lookAt(target);
+
+  frameCount++;
+  fpsTime+=dt;
+
+  if(fpsTime>=1){
+   document.getElementById("stats").textContent=frameCount+" FPS";
+   frameCount=0;
+   fpsTime=0;
+  }
+
+  renderer.render(scene,camera);
+ }
+
+ requestAnimationFrame(animate);
+
+ addEventListener("resize",()=>{
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);
+ });
+}
+
+boot();
+</script>
+</body>
+</html>
